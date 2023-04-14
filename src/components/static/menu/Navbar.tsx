@@ -4,7 +4,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button/Button";
 import { Box } from "@mui/material";
 
-function Menu() {
+
+function Navbar() {
     return (
         <AppBar position="static">
             <Toolbar variant="dense">
@@ -18,6 +19,7 @@ function Menu() {
                 </Box>
 
                 <Box display="flex" justifyContent="start">
+
                     <Box mx={1} className='cursor'>
                         <Typography variant="h6" color="inherit" >
                             Home
@@ -27,6 +29,7 @@ function Menu() {
 
 
                 <Box display="flex" justifyContent="start">
+
                     <Box mx={1} className='cursor'>
                         <Typography variant="h6" color="inherit" >
                             Postagens
@@ -34,8 +37,8 @@ function Menu() {
                     </Box>
                 </Box>
 
-
                 <Box display="flex" justifyContent="start">
+
                     <Box mx={1} className='cursor'>
                         <Typography variant="h6" color="inherit" >
                             Temas
@@ -43,8 +46,8 @@ function Menu() {
                     </Box>
                 </Box>
 
-
                 <Box display="flex" justifyContent="start">
+
                     <Box mx={1} className='cursor'>
                         <Typography variant="h6" color="inherit" >
                             Cadastrar Tema
@@ -53,6 +56,7 @@ function Menu() {
                 </Box>
 
                 <Box display="flex" justifyContent="start">
+
                     <Box mx={1} className='cursor'>
                         <Typography variant="h6" color="inherit" >
                             Logout
@@ -67,4 +71,4 @@ function Menu() {
     );
 }
 
-export default Menu;
+export default Navbar;
