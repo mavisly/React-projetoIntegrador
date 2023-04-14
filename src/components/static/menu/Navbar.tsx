@@ -4,11 +4,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button/Button";
 import { Box } from "@mui/material";
 
-function Menu() {
+
+function Navbar() {
     return (
         <AppBar position="static">
             <Toolbar variant="dense">
-                <IconButton edge="start" className="menuButton" color="rgb(46, 154, 255)" aria-label="menu">
+                <IconButton edge="start" className="menuButton" aria-label="menu">
                     <MenuIcon />
                 </IconButton>
                 <Box className='cursor'>
@@ -70,4 +71,4 @@ function Menu() {
     );
 }
 
-export default Menu;
+export default Navbar;
