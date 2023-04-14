@@ -1,0 +1,20 @@
+.root {
+    flex-grow: 1px;
+  }
+
+.menuButton {
+    margin-right: 2px;
+  }
+
+.title {
+    flex-grow: 1px;
+  }
+
+.bt{
+    text-align: right;
+}
+
+.cursor{
+    cursor: pointer;
+    color: white;
+}
