@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './Cadastro.css';
 import { useNavigate } from "react-router-dom";
 import User from "../../model/User";
-import { cadastroUser } from "../../service/Service";
+import { cadastroUser } from "../../services/Service";
 
 function Cadastro() {
 
