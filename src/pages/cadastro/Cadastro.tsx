@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './Cadastro.css';
 import { useNavigate } from "react-router-dom";
 import User from "../../model/User";
-import { cadastroUser } from "../../service/Service";
+import { cadastroUsuario } from "../../services/Service";
 
 function Cadastro() {
 
@@ -53,7 +53,7 @@ function Cadastro() {
         e.preventDefault()
         if(confirmarSenha == User.senha && User.senha.length >=8){
             try{
-                await cadastroUser('/usuarios/cadastrar', User, setUserResult)
+                await cadastroUsuario('/usuarios/cadastrar', User, setUserResult)
                 alert("Usuário cadastrado com sucesso!")
             } catch (error){
                 console.log(`Error: ${error}`)
