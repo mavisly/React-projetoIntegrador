@@ -21,6 +21,12 @@ function Login() {
     token: ""
   });
 
+  useEffect(()=>{
+    if(token != '') {
+      history('/home')
+    }
+  } , [token])
+
   function updatedModel(e: ChangeEvent<HTMLInputElement>) {
     setUserLogin({
       ...UserLogin,
@@ -28,11 +34,7 @@ function Login() {
     });
   }
  
-  useEffect(()=>{
-    if(token != '') {
-      history('/home')
-    }
-  } , [token])
+  
 
   async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -67,12 +69,12 @@ function Login() {
               Entrar
             </Typography>
             <TextField
-              value={UserLogin.usuario}
+              value={UserLogin.email}
               onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
-              id="usuario"
-              label="usuario"
+              id="email"
+              label="email"
               variant="outlined"
-              name="usuario"
+              name="email"
               margin="normal"
               fullWidth
             />
@@ -92,7 +94,7 @@ function Login() {
                 Logar
               </Button>
             </Box>
-            
+            </form>
             <Box display="flex" justifyContent="center" marginTop={2}>
               <Box marginRight={1}>
                 <Typography variant="subtitle1" gutterBottom align="center">
@@ -101,18 +103,18 @@ function Login() {
               </Box>
 
               <Link to="/cadastro" className="text-decorator-none">
-                {" "}
+                
                 <Typography
                   variant="subtitle1"
                   gutterBottom
                   align="center"
                   style={{ fontWeight: "bold" }}
                 >
-                  Cadastre-se{" "}
+                  Cadastre-se
                 </Typography>
               </Link>
             </Box>
-            </form>
+            
         </Box>
       </Grid>
       <Grid
