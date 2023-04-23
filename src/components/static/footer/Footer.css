@@ -1,8 +1,20 @@
 .container-footer{
-    background-color: rgb(46, 154, 255)!important;
+    background-color: #68d8d6!important;
     color: white!important;
 }
-.icons-footer{
-    color: white;
-    font-size: 60px !important;
+
+.link{
+    text-decoration: none!important;
+    color: #358f80!important;
+}
+
+.imgs-footer{
+    width: 40px;
+    height: 20px;
+}
+.texto-footer{
+    font-size: 20px!important;
+}
+.texto-footer-2{
+    font-size: 15px!important;
 }
