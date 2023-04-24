@@ -67,12 +67,12 @@ function Login() {
               Entrar
             </Typography>
             <TextField
-              value={UserLogin.usuario}
+              value={UserLogin.email}
               onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
-              id="usuario"
-              label="usuario"
+              id="email"
+              label="email"
               variant="outlined"
-              name="usuario"
+              name="email"
               margin="normal"
               fullWidth
             />
