@@ -12,6 +12,7 @@ function App() {
   return (
     <BrowserRouter>
     <Navbar />
+    <div style={{ minHeight:'100vh' }}>
       <Routes>
         <Route path="/" element={<Login />} />;
         <Route path="/login" element={<Login />} />;
@@ -22,6 +23,7 @@ function App() {
         
         <Route path="/temas" element={<ListaTema />} />;
       </Routes>
+      </div>
     <Footer />
     </BrowserRouter>
   );
