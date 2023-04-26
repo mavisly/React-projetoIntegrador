@@ -8,6 +8,7 @@ import Navbar from "./components/static/menu/Navbar";
 import Footer from "./components/static/footer/Footer";
 import ListaTema from "./components/temas/listatema/ListaTema";
 import CadastroTema from "./components/temas/cadastroTema/CadastroTema";
+import DeletarTema from "./components/temas/deletarTema/DeletarTema";
 function App() {
 
   return (
@@ -24,6 +25,8 @@ function App() {
         
         <Route path="/temas" element={<ListaTema />} />;
         <Route path="/formularioTema" element={<CadastroTema />} />;
+
+        <Route path="/deletarTema/:id" element={<DeletarTema />} />
       </Routes>
       </div>
     <Footer />
