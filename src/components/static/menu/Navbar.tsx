@@ -19,7 +19,7 @@ function Navbar() {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{ background: 'rgb(46,154,255' }}>
             <Toolbar variant="dense">
                 <IconButton edge="start" className="menuButton" aria-label="menu">
                     <MenuIcon />
@@ -80,9 +80,9 @@ function Navbar() {
                     </Box>
                 </Box>
 
-                <Button color="inherit">Login</Button>
+                    <Button color="inherit">Login</Button>
             </Toolbar>
-        </AppBar>
+        </AppBar >
 
     );
 }
