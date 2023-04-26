@@ -6,3 +6,7 @@
 .text-decorator-none{
     text-decoration: none;
 }
+
+.menuButton{
+    margin-right: 2px;
+}

@@ -7,6 +7,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import Navbar from "./components/static/menu/Navbar";
 import Footer from "./components/static/footer/Footer";
 import ListaTema from "./components/temas/listatema/ListaTema";
+import CadastroTema from "./components/temas/cadastroTema/CadastroTema";
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />;
         
         <Route path="/temas" element={<ListaTema />} />;
+        <Route path="/formularioTema" element={<CadastroTema />} />;
       </Routes>
       </div>
     <Footer />
