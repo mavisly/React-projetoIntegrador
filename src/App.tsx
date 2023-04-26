@@ -19,6 +19,7 @@ function App() {
     <Navbar />
     <div style={{ minHeight:'100vh' }}>
       <Routes>
+        
         <Route path="/" element={<Login />} />;
         <Route path="/login" element={<Login />} />;
         <Route path="/home" element={<Home />} />;
@@ -31,10 +32,14 @@ function App() {
         <Route path="/posts" element={<ListaPostagem />} />
 
         <Route path="/formularioTema" element={<CadastroTema />} />;
+
+        <Route path="/formularioTema/:id" element={<CadastroTema />} />;
+
         <Route path="/deletarTema/:id" element={<DeletarTema />} />
         <Route path ="/formularioPostagem" element={<CadastroPosts />} />;
         <Route path ="/formularioPostagem:id" element={<CadastroPosts />} />;
         <Route path="/deletarPost:id" element={<DeletarPost />} />;
+
       </Routes>
       </div>
     <Footer />
