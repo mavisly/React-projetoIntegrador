@@ -28,7 +28,7 @@ function Navbar() {
                         </Box>
                     </Link>
                     </Box>
-
+                    
                     <Box display="flex" justifyContent="start">
                         <Box mx={1} className='cursor'>
                             <Typography variant="h6" color="inherit" >
@@ -38,21 +38,23 @@ function Navbar() {
                     </Box>
 
                     <Box display="flex" justifyContent="start">
-
+                        <Link to="/temas" className="text-decorator-none">
                         <Box mx={1} className='cursor'>
                             <Typography variant="h6" color="inherit" >
                                 Temas
                             </Typography>
                         </Box>
+                        </Link>
                     </Box>
 
                     <Box display="flex" justifyContent="start">
-
+                        <Link to ="/formulario/Tema" className="text-decorator-none">
                         <Box mx={1} className='cursor'>
                             <Typography variant="h6" color="inherit" >
                                 Cadastrar Tema
                             </Typography>
                         </Box>
+                        </Link>
                     </Box>
 
                     <Box display="flex" justifyContent="start">

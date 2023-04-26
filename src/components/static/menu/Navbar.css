@@ -1,0 +1,17 @@
+.text-decorator-none{
+    text-decoration: none;
+}
+.cursor{
+    cursor: pointer;
+    color: white;
+}
+.title{
+    font-weight: bold;
+}
+.root{
+    flex-grow: 1px;
+}
+
+.menuButton{
+    margin-right: 2px;
+}
