@@ -1,25 +1,64 @@
-.container-home{
-    background-color: #ffffff;
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text&display=swap');
+
+.container-header{
+  margin-top: 45px;
+  height: 50vh;
 }
-/*
+
 .titulo{
-    
+  font-family: 'Bellota Text', cursive!important;
+}
+  
+.subtitulo-txt-animado{
+  font-size: 40px!important;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typewriter 7s steps(50) infinite alternate,
+    blink 800ms steps(50) infinite normal;
+  border-right: 5px solid black;
+  font-family: 'Bellota Text', cursive!important;
 }
 
-.subtitulo{
-    
+@keyframes typewriter {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 116%;
+  }
 }
 
-.botao{
+@keyframes blink {
+  from {
+    border-color: black;
+  }
+  to {
+    border-color: transparent;
+  }
+}
+
+.container-fiscalizado{
+  margin-right: 25px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   
 }
-
-.postagens{
-    
+.txt-fiscalizado{
+  font-family: 'Bellota Text', cursive!important;
 }
-*/
 
-.img-home{
-    width: 500px;
-    height: 500px;
+.assuntos-relacionados{
+  margin-top: 20px;
 }
+
+.img-fiscalizado{
+  width: 70px;
+}
+.imgs{
+  width: 200px;
+  height: 150px;
+}
+
+/*infinite alternate = deixa o texto em loop*/
