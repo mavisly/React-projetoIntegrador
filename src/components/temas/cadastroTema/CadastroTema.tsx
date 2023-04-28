@@ -3,14 +3,17 @@ import {Container, Typography, TextField, Button} from "@material-ui/core"
 import { useNavigate, useParams } from "react-router-dom"
 import Tema from "../../../model/Tema";
 import "./CadastroTema.css";
-import useLocalStorage from "react-use-localstorage";
 import { buscaId, post, put } from "../../../services/Service";
-import { TextFormatSharp } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 function CadastroTema(){
     const { id } = useParams<{id: string}>();
-    const [token, setToken] = useLocalStorage('token');
-
+    
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
+    
     const [temas, setTemas] = useState<Tema>({
         id: 0,
         nome: "",
