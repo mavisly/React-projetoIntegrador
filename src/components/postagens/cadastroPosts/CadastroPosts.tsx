@@ -32,7 +32,7 @@ function CadastroPosts(){
         tipo_profissional:"",
         atendimento: "",
         modalidade_categoria: "",
-        avaliacao: "",
+        avaliacao: 0,
         image_link: ""
     })
     useEffect(()=>{
