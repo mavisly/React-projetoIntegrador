@@ -1,3 +1,21 @@
 .text-decorator-none{
     text-decoration: none;
 }
+.posts{
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.left-div {
+    width: 25%;
+    height: 100%;
+    background-color: gray;
+  }
+  .right-div {
+    width: 25%;
+    height: 100%;
+    background-color: gray;
+  }
+
