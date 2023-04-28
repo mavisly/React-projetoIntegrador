@@ -6,14 +6,22 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 50vh;
 }
 .left-div {
     width: 25%;
     height: 100%;
     background-color: gray;
+    display: flexbox;
+  }
+  .cria-post {
+    width: 25%;
+    height: 100%;
+    background-color: gray;
   }
   .right-div {
+    justify-content: right;
+    align-items: right;
     width: 25%;
     height: 100%;
     background-color: gray;

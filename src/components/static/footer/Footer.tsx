@@ -7,7 +7,7 @@ import './Footer.css'
 function Footer() {
     return (
         <>
-            <Grid container direction="row" justifyContent="center" alignItems="center" className='container-footer'>
+            <Grid container direction='row' justifyContent="center" alignItems="center" className='container-footer'>
 
                 <Grid alignItems="center" item xs={12}>
                     <Box>
