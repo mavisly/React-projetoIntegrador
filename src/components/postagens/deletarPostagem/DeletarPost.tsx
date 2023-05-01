@@ -6,6 +6,7 @@ import { Box, Card, CardActions, CardContent } from "@mui/material";
 import { Button, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from 'react-toastify';
 
 function DeletarPost(){
     
@@ -19,12 +20,22 @@ function DeletarPost(){
   
     const [post, setPosts] = useState<Postagem>()
   
-    useEffect (()=> {
-        if (token == ""){
-            alert ("Você precisa estar logado")
-            navigate("/login")
-        }
-    },[token])
+    useEffect(() => {
+      if (token == "") {
+        toast.error('Você precisa estar logado', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "light",
+          progress: undefined,
+      });
+      navigate("/login")
+  
+      }
+  }, [token])
   
     useEffect(()=>{
     if (id !== undefined){
@@ -40,16 +51,25 @@ function DeletarPost(){
     })
    }
   
-   function sim(){
-    navigate("/posts")
-    deleteId(`/postagens/${id}`, {
-      headers: {
-        "Authorization": token
-      }
+   function sim() {
+    navigate('/posts')
+      deleteId(`/postagens/${id}`, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      toast.success('Postagem deletada com sucesso', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "light",
+        progress: undefined,
     });
-    alert("Postagem deletada com sucesso");
-   }
-  
+    }
+
    function nao(){
     navigate("/posts")
    }

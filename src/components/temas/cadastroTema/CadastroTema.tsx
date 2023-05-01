@@ -6,6 +6,7 @@ import "./CadastroTema.css";
 import { buscaId, post, put } from "../../../services/Service";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from "react-toastify";
 
 function CadastroTema(){
     const { id } = useParams<{id: string}>();
@@ -22,18 +23,22 @@ function CadastroTema(){
 
     let navigate = useNavigate();
 
-    useEffect(()=>{
-        if(token == ''){
-          alert("Você precisa estar logado!")
+    useEffect(() => {
+        if (token == "") {
+          toast.error('Você precisa estar logado', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+        });
           navigate("/login")
+    
         }
-      }, [token]);
-
-      useEffect(() =>{
-        if(id !== undefined){
-            findById(id)
-        }
-    }, [id])
+      }, [token])
 
     async function findById(id: string) {
         buscaId(`/temas/${id}`, setTemas, {
@@ -50,30 +55,48 @@ function CadastroTema(){
         })
        }
     
-       async function onSubmit(e:ChangeEvent<HTMLFormElement>){
+       async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        console.log("temas "+ JSON.stringify(temas))
-    
-        if (id !== undefined){
+        console.log("tema " + JSON.stringify(temas))
+
+        if (id !== undefined) {
             console.log(temas)
             put(`/temas`, temas, setTemas, {
                 headers: {
-                    "Authorization": token
+                    'Authorization': token
                 }
             })
-            alert("Tema atualizado com sucesso");
+            toast.success('Tema atualizado com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light",
+                progress: undefined,
+                });
         } else {
             post(`/temas`, temas, setTemas, {
                 headers: {
-                    "Authorization": token
+                    'Authorization': token
                 }
             })
-            alert("Tema cadastrado com sucesso")
+            toast.success('Tema cadastrado com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light",
+                progress: undefined,
+                });
         }
         back()
-    
-       }
-    
+
+    }
+
        function back(){
         navigate("/temas")
        }

@@ -6,6 +6,7 @@ import UserLogin from "../../model/UserLogin";
 import { ChangeEvent, useState ,useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { addToken } from "../../store/tokens/actions";
+import { toast } from "react-toastify";
 
 function Login() {
   let history = useNavigate();
@@ -39,19 +40,33 @@ function Login() {
     });
   }
  
-  
-
-  async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
     e.preventDefault();
-
-    try {
-      await login (`/usuarios/logar`, UserLogin , setToken);
-      
-      alert("Usuario logado com sucesso!");
-    } catch (error) {
-      alert("Usuario e senha incorretos!");
+    try{
+        await login(`/usuarios/logar`, UserLogin, setToken)
+        toast.success('Usuário logado com sucesso!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+            });
+    }catch(error){
+        toast.error('Dados do usuário inconsistentes. Erro ao logar!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+            });
     }
-  }
+}
 
   return (
     <Grid
