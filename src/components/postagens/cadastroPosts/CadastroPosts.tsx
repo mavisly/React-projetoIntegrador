@@ -10,6 +10,7 @@ import { Button, Container, FormControl, FormHelperText, InputLabel, MenuItem, S
 function CadastroPosts(){
     let navigate = useNavigate();
     const {id} = useParams<{id:string}>();
+ 
     const [temas, setTemas] = useState<Tema[]>([]);
     const [token, setToken] = useLocalStorage('token');
     
@@ -95,7 +96,7 @@ function CadastroPosts(){
 
     function back(){
         navigate("/posts")
-    }
+    }  
 
     return (
         <>

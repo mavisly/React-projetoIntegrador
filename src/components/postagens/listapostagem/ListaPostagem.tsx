@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, ChangeEvent } from "react";
+import { Link, useParams } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
-import { busca } from "../../../services/Service";
+import { busca, buscaId, post, put } from "../../../services/Service";
 import {
   Card,
   CardActions,
   CardContent,
-  Button,
   Typography,
+  Button,
+ 
 } from "@material-ui/core";
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress, Container, Dialog, DialogTitle, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import "./ListaPostagem.css";
+import { MdFilledButton } from '@material/web/button/filled-button.js';
+import {MdOutlinedButton} from'@material/web/button/outlined-button.js';
+import {MdCheckbox} from '@material/web/checkbox/checkbox.js';
+
 import useLocalStorage from "react-use-localstorage";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../loader/loader";
+
 
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -22,6 +28,13 @@ import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import ListaTema from "../../temas/listatema/ListaTema";
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import CadastroPosts from "../cadastroPosts/CadastroPosts";
+import Tema from "../../../model/Tema";
+
 
 
  function ListaPostagem() {
@@ -31,7 +44,8 @@ import ListaTema from "../../temas/listatema/ListaTema";
   let navigate = useNavigate();
 
 
-
+  
+  const {id} = useParams<{id:string}>();
   useEffect(() => {
 
       if (token == "") {
@@ -54,42 +68,182 @@ import ListaTema from "../../temas/listatema/ListaTema";
       getPost();
     
   }, [posts.length]);
- 
-  return (
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [temas, setTemas] = useState<Tema[]>([]);
+  
     
+    useEffect(()=> {
+        if (token ==""){
+            alert ("Você precisa estar logado")
+            navigate("/login")
+        }
+    }, [token])
+    
+    const [tema, setTema] = useState<Tema>({
+        id: 0,
+        nome: "",
+        descricao:""
+    })
+
+    const [postagem, setPostagem] = useState<Postagem>({
+        id:0,
+        informacoes:"",
+        tipo_profissional:"",
+        atendimento: "",
+        modalidade_categoria: "",
+        avaliacao: "",
+        image_link: ""
+    })
+    useEffect(()=>{
+        setPostagem({
+            ...postagem,
+            tema: tema
+        })
+    }, [tema])
+
+    useEffect(()=> {
+        getTemas()
+        if (id !== undefined){
+            findByIdPostagem(id)
+        }
+    }, [id])
+
+    async function getTemas(){
+        await busca("/temas", setTemas, {
+            headers: {
+                "Authorization": token
+            }
+        })
+    }
+
+    async function findByIdPostagem(id:string){
+        await buscaId(`/postagens/${id}`, setPostagem, {
+            headers: {
+                "Authorization": token
+            }
+        })
+    }
+
+    function updatedPostagem(e: ChangeEvent<HTMLInputElement>){
+        setPostagem({
+            ...postagem,
+            [e.target.name]: e.target.value,
+            tema:tema
+        })
+    }
+
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+        e.preventDefault()
+        if (id !== undefined){
+            put(`/postagens`, postagem, setPostagem, {
+                headers: {
+                    "Authorization": token
+                }
+            })
+            alert("Postagem atualizada com sucesso");
+        } else {
+            post(`/postagens`, postagem, setPostagem,{
+                headers: {
+                    "Authorization": token
+                }
+            })
+            alert("Postagem cadastrada com sucesso");
+        }
+        back()
+        reloadPage();
+    }
+
+    function back(){
+        navigate("/posts")
+    } 
+    function reloadPage() {
+      window.location.reload();
+    }
+    
+
+  return (
+   <div className="background">
     <>
+    <Button variant="outlined" className="btn-postagem" onClick={handleClickOpen}>
+        Nova postagem
+      </Button>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Refugio Mental</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Escreva sobre uma avaliação, dica ou outro coisa que esteja pensando.
+          </DialogContentText>
+          
+          <Container maxWidth="sm" className="topo">
+            <form onSubmit={onSubmit}>
+            <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
+                <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="informacoes" variant="outlined" name="informacoes" margin="normal" fullWidth />
+                <FormHelperText>min =</FormHelperText>
+                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="tipo_profissional" label="tipo_profissional" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
+                <FormHelperText>min =</FormHelperText>
+                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="atendimento" label="atendimento" variant="outlined" name="atendimento" margin="normal" fullWidth />
+                <FormHelperText>min =</FormHelperText>
+                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="modalidade_categoria" label="modalidade_categoria" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
+                <FormHelperText>min =</FormHelperText>
+                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="avaliacao" label="avaliacao" variant="outlined" name="avaliacao" margin="normal" fullWidth />
+                <FormHelperText>min = 0 a 10</FormHelperText>
+                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="image_link" label="image_link" variant="outlined" name="image_link" margin="normal" fullWidth />
+                <FormHelperText>Usar que nem blogPessoal</FormHelperText>
+                <FormControl >
+                    <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        onChange={(e => buscaId(`/temas/${e.target.value}`, setTema,{
+                            headers: {
+                                "Authorization": token
+                            }
+                        }))}>
+                          {
+                            temas.map(tema => (
+                                <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
+                            ))
+                          }
+                    </Select>
+                    <FormHelperText>Escolha um tema para a postagem</FormHelperText>
+                    <Button type="submit" variant="contained" color="primary" onClick={reloadPage}>
+                        Finalizar
+                    </Button>
+                </FormControl>
+            </form>
+        </Container>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
+       
       
-      <Grid container direction="row"  m={2}  >
        
-       <Grid item className="left-div" lg={3} m={2}  >
-         <Card variant="outlined">
-           <h1>Filtro</h1>
-         </Card>
-        
-       </Grid>
-       <Grid item className="cria-post" lg={5} m={1}  >
-         <Box>
-           <h1>Criar postagem</h1>
-         </Box>
-        
-       </Grid>
-       
-       </Grid>
-       
-       
-       <Grid container className="teste_posts">
-     
+      
        {posts.map((post) => (
          
-         <Grid container className="posts" >
+         <Grid container  direction={'column'} >
+           <Grid item xs={2}/>
            
-           <Grid item xs={4} >
+           <Grid item xs={4}  >
              <Box m={2}>
-               <Card variant="outlined">
+               <Card variant="outlined" className="posts"   >
                  <CardContent>
-                   <Typography color="textSecondary" gutterBottom>
-                     Postagens
+                   <Typography color="textSecondary" gutterBottom> 
+                     Postagens 
                    </Typography>
                    <Typography variant="h5" component="h2">
                      {post.informacoes}
@@ -133,11 +287,14 @@ import ListaTema from "../../temas/listatema/ListaTema";
                        <Box mx={1}>
                          <Button
                            variant="contained"
+                           className="marginLeft"
                            size="small"
-                           color="secondary"
+                           
                          >
                            deletar
                          </Button>
+                       
+            
                        </Box>
                      </Link>
                    </Box>
@@ -146,16 +303,17 @@ import ListaTema from "../../temas/listatema/ListaTema";
              </Box>
              
            </Grid>
-           
-         </Grid>
+           <Grid item xs={2}/>
+           </Grid>
          
-  
+        
        ))}
        
        
-     </Grid>
+     
    
     </>
+    </div>
   );
 }
 

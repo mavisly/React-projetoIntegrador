@@ -19,7 +19,9 @@ function Posts () {
       }, []);
 return(
     <>
-    {showSpinner && <Loader />}
+    
+    {showSpinner && <Loader /> }
+    
     {showContent && <ListaPostagem/>}
     </>
 )
