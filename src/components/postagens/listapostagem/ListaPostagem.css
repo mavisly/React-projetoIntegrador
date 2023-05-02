@@ -19,6 +19,7 @@ justify-content: center;
 }
 
 
+
 .posts {
   display:flex;
   flex-direction: row;
@@ -30,5 +31,6 @@ justify-content: center;
   min-width: 20;
   max-width: 400;
 }
+
 
 

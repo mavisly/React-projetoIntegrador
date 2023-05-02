@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
@@ -36,17 +37,38 @@ import CadastroPosts from "../cadastroPosts/CadastroPosts";
 import Tema from "../../../model/Tema";
 
 
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
- function ListaPostagem() {
-  const [posts, setPosts] = useState<Postagem[]>([]);
-  const [token, setToken] = useLocalStorage("token");
+function ListaPostagem() {
+  const [posts, setPosts] = useState<Postagem[]>([])
  
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
+
+
   let navigate = useNavigate();
 
 
   
   const {id} = useParams<{id:string}>();
   useEffect(() => {
+
+    if (token == "") {
+      toast.error('Você precisa estar logado', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "light",
+        progress: undefined,
+    });
+      navigate("/login")
+
 
       if (token == "") {
         alert("Você precisa estar logado");
@@ -174,6 +196,7 @@ import Tema from "../../../model/Tema";
   return (
    <div className="background">
     <>
+
     <Button variant="outlined" className="btn-postagem" onClick={handleClickOpen}>
         Nova postagem
       </Button>
@@ -305,13 +328,9 @@ import Tema from "../../../model/Tema";
            </Grid>
            <Grid item xs={2}/>
            </Grid>
-         
         
        ))}
-       
-       
      
-   
     </>
     </div>
   );

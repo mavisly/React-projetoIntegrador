@@ -1,23 +1,42 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Tema from "../../../model/Tema";
-import useLocalStorage from "react-use-localstorage";
 import Postagem from "../../../model/Postagem";
 import { busca, buscaId, post, put } from "../../../services/Service";
 import { Button, Container, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from "react-toastify";
 
 
 function CadastroPosts(){
     let navigate = useNavigate();
+
     const {id} = useParams<{id:string}>();
- 
+
+
+
     const [temas, setTemas] = useState<Tema[]>([]);
-    const [token, setToken] = useLocalStorage('token');
     
-    useEffect(()=> {
-        if (token ==""){
-            alert ("Você precisa estar logado")
-            navigate("/login")
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
+    
+    
+      useEffect(() => {
+        if (token == "") {
+          toast.error('Você precisa estar logado', {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              theme: "colored",
+              progress: undefined,
+          });
+          navigate("/login")
+    
         }
     }, [token])
     
@@ -33,7 +52,7 @@ function CadastroPosts(){
         tipo_profissional:"",
         atendimento: "",
         modalidade_categoria: "",
-        avaliacao: "",
+        avaliacao: 0,
         image_link: ""
     })
     useEffect(()=>{
@@ -74,22 +93,41 @@ function CadastroPosts(){
         })
     }
 
-    async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        if (id !== undefined){
-            put(`/postagens`, postagem, setPostagem, {
+
+        if (id !== undefined) {
+            await put(`/postagens`, postagem, setPostagem, {
                 headers: {
-                    "Authorization": token
+                    'Authorization': token
                 }
             })
-            alert("Postagem atualizada com sucesso");
+            toast.success('Postagem atualizada com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light",
+                progress: undefined,
+            });
         } else {
-            post(`/postagens`, postagem, setPostagem,{
+            await post(`/postagens`, postagem, setPostagem, {
                 headers: {
-                    "Authorization": token
+                    'Authorization': token
                 }
             })
-            alert("Postagem cadastrada com sucesso");
+            toast.success('Postagem cadastrada com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light",
+                progress: undefined,
+            });
         }
         back()
     }
