@@ -49,6 +49,12 @@ function Login() {
   }
 
   return (
+    <>
+    <div className="center">
+ <h1>
+   
+   </h1>
+</div>
     <Grid
       container
       direction="row"
@@ -117,19 +123,9 @@ function Login() {
             
         </Box>
       </Grid>
-      <Grid
-        item
-        xs={6}
-        style={{
-          backgroundImage: `url("/background.png")`,
-          backgroundRepeat: "no-repeat",
-          width: "100vh",
-          minHeight: "100vh",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      ></Grid>
+      
     </Grid>
+    </>
   );
 }
 
