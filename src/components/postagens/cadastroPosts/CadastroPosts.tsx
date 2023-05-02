@@ -14,6 +14,8 @@ function CadastroPosts(){
 
     const {id} = useParams<{id:string}>();
 
+
+
     const [temas, setTemas] = useState<Tema[]>([]);
     
     const token = useSelector<TokenState, TokenState["tokens"]>(
@@ -132,7 +134,7 @@ function CadastroPosts(){
 
     function back(){
         navigate("/posts")
-    }
+    }  
 
     return (
         <>

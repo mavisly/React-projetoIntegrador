@@ -8,6 +8,7 @@ import { TokenState } from '../../../store/tokens/tokensReducer';
 import { AddLocation, Drafts } from '@mui/icons-material';
 
 function Footer() {
+
     const token = useSelector<TokenState, TokenState["tokens"]>(
         (state) => state.tokens
     );
@@ -15,6 +16,7 @@ function Footer() {
     var footerComponent;
     if (token != '') {
         footerComponent = <Grid container direction="row" justifyContent="center" alignItems="center" className='container-footer'>
+
 
             <Grid item xs={4}>
 
