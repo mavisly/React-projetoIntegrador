@@ -10,6 +10,11 @@ import { TokenState } from "../../../store/tokens/tokensReducer";
 import { addToken } from "../../../store/tokens/actions";
 import {toast} from 'react-toastify';
 
+import HomeIcon from '@mui/icons-material/Home';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 function Navbar() {
 
     const token = useSelector<TokenState, TokenState["tokens"]>(
@@ -37,23 +42,13 @@ function Navbar() {
 
     var navbarComponent;
     if(token != ""){
-        navbarComponent = <AppBar position="static" style={{ background: 'rgb(46,154,255' }}>
-        <Toolbar variant="dense">
-            <IconButton edge="start" className="menuButton" aria-label="menu">
-                <MenuIcon />
-            </IconButton>
-            <Box className='cursor'>
-                <Typography variant="h5" color="inherit" >
-                    Refúgio Mental
-                </Typography>
-            </Box>
+        navbarComponent = <AppBar position="static" className="menu">
+        <Toolbar variant="dense" >
 
             <Box display="flex" justifyContent="start">
             <Link to="/home" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit" style={{color:'white'}}>
-                        Home
-                    </Typography>
+                    <HomeIcon className='icons-home'/>
                 </Box>
             </Link>    
             </Box>
@@ -62,9 +57,7 @@ function Navbar() {
             <Box display="flex" justifyContent="start">
             <Link to="/posts" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit" style={{color:'white'}}>
-                        Postagens
-                    </Typography>
+                    <MailOutlineIcon className='icons-home'/>
                 </Box>
             </Link>
             </Box>
@@ -72,33 +65,19 @@ function Navbar() {
             <Box display="flex" justifyContent="start">
             <Link to="/temas" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit" style={{color:'white'}}>
-                        Temas
-                    </Typography>
-                </Box>
-            </Link>    
-            </Box>
-
-            <Box display="flex" justifyContent="start">
-            <Link to="/formularioTema" className="text-decorator-none">
-                <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit" style={{color:'white'}}>
-                        Cadastrar Tema
-                    </Typography>
+                    <HelpOutlineIcon className='icons-home'/>
                 </Box>
             </Link>    
             </Box>
 
             <Box display="flex" justifyContent="start" onClick={goLogout}>
-
+            
                 <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit" style={{color:'white', cursor:'pointer'}}>
-                        Logout
-                    </Typography>
+                    <LogoutIcon className='icons-home'/>
                 </Box>
+                
             </Box>
 
-                <Button color="inherit">Login</Button>
         </Toolbar>
     </AppBar >
     }
