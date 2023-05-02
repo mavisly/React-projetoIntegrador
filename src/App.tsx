@@ -12,9 +12,17 @@ import DeletarTema from "./components/temas/deletarTema/DeletarTema";
 import CadastroPosts from "./components/postagens/cadastroPosts/CadastroPosts";
 import DeletarPost from "./components/postagens/deletarPostagem/DeletarPost";
 import ListaPostagem from "./components/postagens/listapostagem/ListaPostagem";
+
+import { Provider } from 'react-redux';
+import store from './store/store';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   return (
+    <Provider store={store}>
+    <ToastContainer />
     <BrowserRouter>
     <Navbar />
     <div style={{ minHeight:'100vh' }}>
@@ -24,9 +32,6 @@ function App() {
         <Route path="/login" element={<Login />} />;
         <Route path="/home" element={<Home />} />;
         <Route path="/cadastro" element={<Cadastro />} />;
-
-        <Route path="/login" element={<Login />} />;
-        
         <Route path="/temas" element={<ListaTema />} />;
 
         <Route path="/posts" element={<ListaPostagem />} />
@@ -37,13 +42,14 @@ function App() {
 
         <Route path="/deletarTema/:id" element={<DeletarTema />} />
         <Route path ="/formularioPostagem" element={<CadastroPosts />} />;
-        <Route path ="/formularioPostagem:id" element={<CadastroPosts />} />;
-        <Route path="/deletarPost:id" element={<DeletarPost />} />;
+        <Route path ="/formularioPostagem/:id" element={<CadastroPosts />} />;
+        <Route path="/deletarPostagem/:id" element={<DeletarPost />} />;
 
       </Routes>
       </div>
     <Footer />
     </BrowserRouter>
+    </Provider>
   );
 }
 

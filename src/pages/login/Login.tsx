@@ -1,16 +1,21 @@
 import "./Login.css";
 import { Grid, Box, Typography, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
 import { login } from "../../services/Service";
 import UserLogin from "../../model/UserLogin";
 import { ChangeEvent, useState ,useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { addToken } from "../../store/tokens/actions";
+import { toast } from "react-toastify";
 
 function Login() {
   let history = useNavigate();
-  
-  const [token, setToken] = useLocalStorage("token");
 
+  const [token, setToken] = useState('');
+  
+  const dispatch = useDispatch();
+  
+  
   const [UserLogin, setUserLogin] = useState<UserLogin>({
     id: 0,
     nome: "",
@@ -22,10 +27,11 @@ function Login() {
   });
 
   useEffect(()=>{
-    if(token != '') {
-      history('/home')
+    if(token != ''){
+        dispatch(addToken(token));
+        history('/home')
     }
-  } , [token])
+}, [token])
 
   function updatedModel(e: ChangeEvent<HTMLInputElement>) {
     setUserLogin({
@@ -34,19 +40,33 @@ function Login() {
     });
   }
  
-  
-
-  async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
     e.preventDefault();
-
-    try {
-      await login (`/usuarios/logar`, UserLogin , setToken);
-      
-      alert("Usuario logado com sucesso!");
-    } catch (error) {
-      alert("Usuario e senha incorretos!");
+    try{
+        await login(`/usuarios/logar`, UserLogin, setToken)
+        toast.success('Usuário logado com sucesso!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+            });
+    }catch(error){
+        toast.error('Dados do usuário inconsistentes. Erro ao logar!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+            });
     }
-  }
+}
 
   return (
     <Grid
