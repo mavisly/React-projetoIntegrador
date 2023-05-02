@@ -39,6 +39,12 @@ function CadastroTema(){
     
         }
       }, [token])
+      
+      useEffect(() => {
+        if (id !== undefined) {
+            findById(id)
+        }
+    }, [id])
 
     async function findById(id: string) {
         buscaId(`/temas/${id}`, setTemas, {
@@ -61,7 +67,7 @@ function CadastroTema(){
 
         if (id !== undefined) {
             console.log(temas)
-            put(`/temas`, temas, setTemas, {
+            await put(`/temas`, temas, setTemas, {
                 headers: {
                     'Authorization': token
                 }
