@@ -76,7 +76,7 @@ function ListaPostagem() {
        
       }
     
-  }, [token]);
+  }, [token];
 
   async function getPost() {
     await busca("/postagens", setPosts, {
