@@ -34,6 +34,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import CadastroPosts from "../cadastroPosts/CadastroPosts";
 import Tema from "../../../model/Tema";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -68,7 +69,7 @@ import Tema from "../../../model/Tema";
       getPost();
     
   }, [posts.length]);
-
+// Abre e fecha botão nova postagem
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -78,14 +79,23 @@ import Tema from "../../../model/Tema";
   const handleClose = () => {
     setOpen(false);
   };
-
+// CadastroPost
   const [temas, setTemas] = useState<Tema[]>([]);
   
     
     useEffect(()=> {
         if (token ==""){
-            alert ("Você precisa estar logado")
-            navigate("/login")
+          toast.error('Você precisa estar logado!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined
+           });
+        navigate("/login")
         }
     }, [token])
     
@@ -142,25 +152,72 @@ import Tema from "../../../model/Tema";
         })
     }
 
-    async function onSubmit(e: ChangeEvent<HTMLFormElement>){
-        e.preventDefault()
-        if (id !== undefined){
-            put(`/postagens`, postagem, setPostagem, {
-                headers: {
-                    "Authorization": token
-                }
-            })
-            alert("Postagem atualizada com sucesso");
-        } else {
-            post(`/postagens`, postagem, setPostagem,{
-                headers: {
-                    "Authorization": token
-                }
-            })
-            alert("Postagem cadastrada com sucesso");
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+      e.preventDefault()
+
+      if (id !== undefined) {
+          try {
+              await put(`/postagens`, postagem, setPostagem, {
+                  headers: {
+                      'Authorization': token
+                  }
+              })
+              toast.success('Postagem atualizada com sucesso!', {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: false,
+                  theme: "colored",
+                  progress: undefined
+                 });
+          } catch (error) {
+              toast.error('Erro ao atualizar, verifique os campos!', {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: false,
+                  theme: "colored",
+                  progress: undefined
+                 });
+          }
+
+      } else {
+          try {
+              await post(`/postagens`, postagem, setPostagem, {
+                  headers: {
+                      'Authorization': token
+                  }
+              })
+              toast.success('Postagem cadastrada com sucesso!', {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: false,
+                  theme: "colored",
+                  progress: undefined
+                 });
+          } catch (error) {
+              toast.error('Erro ao cadastrar, verifique os campos!', {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: false,
+                  theme: "colored",
+                  progress: undefined
+                 });
+          }
         }
         back()
         reloadPage();
+        
     }
 
     function back(){
@@ -178,15 +235,15 @@ import Tema from "../../../model/Tema";
         Nova postagem
       </Button>
 
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Refugio Mental</DialogTitle>
-        <DialogContent>
+      <Dialog open={open} onClose={handleClose} className="formulario_fora">
+        <DialogTitle className="caixa" >Refugio Mental</DialogTitle>
+        <DialogContent className="caixa" >
           <DialogContentText>
             Escreva sobre uma avaliação, dica ou outro coisa que esteja pensando.
           </DialogContentText>
           
-          <Container maxWidth="sm" className="topo">
-            <form onSubmit={onSubmit}>
+          <Container maxWidth="sm" className="container_formulario">
+            <form onSubmit={onSubmit} className="formulario" >
             <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
                 <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="informacoes" variant="outlined" name="informacoes" margin="normal" fullWidth />
                 <FormHelperText>min =</FormHelperText>
@@ -224,10 +281,7 @@ import Tema from "../../../model/Tema";
             </form>
         </Container>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
+        
       </Dialog>
        
       
@@ -243,7 +297,7 @@ import Tema from "../../../model/Tema";
                <Card variant="outlined" className="posts"   >
                  <CardContent>
                    <Typography color="textSecondary" gutterBottom> 
-                     Postagens 
+                     {post.tema?.nome} 
                    </Typography>
                    <Typography variant="h5" component="h2">
                      {post.informacoes}
@@ -269,7 +323,7 @@ import Tema from "../../../model/Tema";
                        to={`/formularioPostagem/${post.id}`}
                        className="text-decorator-none"
                      >
-                       <Box mx={1}>
+                       <Box mx={1} >
                          <Button
                            variant="contained"
                            className="marginLeft"
