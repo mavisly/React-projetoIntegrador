@@ -102,7 +102,16 @@ function ListaPostagem() {
     
     useEffect(()=> {
         if (token ==""){
-            alert ("Você precisa estar logado")
+          toast.error('Você precisa estar logado', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+        });
             navigate("/login")
         }
     }, [token])
@@ -164,19 +173,37 @@ function ListaPostagem() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault()
         if (id !== undefined){
-            put(`/postagens`, postagem, setPostagem, {
+          await put(`/postagens`, postagem, setPostagem, {
                 headers: {
                     "Authorization": token
                 }
             })
-            alert("Postagem atualizada com sucesso");
+            toast.success('Postagem atualizada com sucesso', {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              theme: "light",
+              progress: undefined,
+          });
         } else {
-            post(`/postagens`, postagem, setPostagem,{
+            await post(`/postagens`, postagem, setPostagem,{
                 headers: {
                     "Authorization": token
                 }
             })
-            alert("Postagem cadastrada com sucesso");
+            toast.success('Postagem cadastrada com sucesso', {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              theme: "colored",
+              progress: undefined,
+          });
         }
         // back()
         home();

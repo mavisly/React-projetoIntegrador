@@ -125,4 +125,9 @@
 .card{
   height: 30vh;
 }
+.bar-2{
+  background-color: #77bfa3!important;
+  align-items: center;
+  
+}
 /*infinite alternate = deixa o texto em loop*/
