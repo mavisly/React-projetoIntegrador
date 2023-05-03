@@ -20,6 +20,7 @@ function Posts () {
       }, []);
 return(
   <>
+
   <Grid container>
       <Grid item xs={6} ></Grid>
       <Grid item xs={2}>{showSpinner && <Loader /> }</Grid>
@@ -34,6 +35,7 @@ return(
       <Grid item xs={3} className="background"></Grid>
   </Grid>
     </>
+
 )
 }
 export default Posts;

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import User from "../../model/User";
 
 import { cadastroUsuario } from "../../services/Service";
+import { toast } from "react-toastify";
 
 
 function Cadastro() {
@@ -53,24 +54,32 @@ function Cadastro() {
 
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        if(confirmarSenha == User.senha && User.senha.length >=8){
-            try{
-                await cadastroUsuario('/usuarios/cadastrar', User, setUserResult)
-                alert("Usuário cadastrado com sucesso!")
-            } catch (error){
-                console.log(`Error: ${error}`)
-                alert("Erro ao cadastrar o usuário, por favor tente novamente")
-            }
-        } else{
-            alert("Dados inconsistentes. Verifique as informações de cadastro.")
-
-            setUser({...User, senha: ""})
-            setConfirmarSenha("")
+        if(confirmarSenha == User.senha){
+        cadastroUsuario(`/usuarios/cadastrar`, User, setUserResult)
+        toast.success('Usuario cadastrado com sucesso', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+            });
+        }else{
+            toast.error('Dados inconsistentes. Favor verificar as informações de cadastro.', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light",
+                progress: undefined,
+                });
         }
     }
         
-
-
     return (
         <Grid container direction='row' justifyContent='center' alignItems='center'>
             <Grid item xs={6} className='imagem2'></Grid>

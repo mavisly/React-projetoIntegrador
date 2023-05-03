@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
@@ -37,11 +38,18 @@ import Tema from "../../../model/Tema";
 import { ToastContainer, toast } from 'react-toastify';
 
 
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
- function ListaPostagem() {
-  const [posts, setPosts] = useState<Postagem[]>([]);
-  const [token, setToken] = useLocalStorage("token");
+function ListaPostagem() {
+  const [posts, setPosts] = useState<Postagem[]>([])
  
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
+
+
   let navigate = useNavigate();
 
 
@@ -49,11 +57,21 @@ import { ToastContainer, toast } from 'react-toastify';
   const {id} = useParams<{id:string}>();
   useEffect(() => {
 
-      if (token == "") {
-        alert("Você precisa estar logado");
-        navigate("/login");
-       
-      }
+    if (token == "") {
+      toast.error('Você precisa estar logado', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "light",
+        progress: undefined,
+    });
+      navigate("/login")
+
+
+  }
     
   }, [token]);
 
@@ -85,7 +103,9 @@ import { ToastContainer, toast } from 'react-toastify';
     
     useEffect(()=> {
         if (token ==""){
+
           toast.error('Você precisa estar logado!', {
+
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -93,9 +113,9 @@ import { ToastContainer, toast } from 'react-toastify';
             pauseOnHover: false,
             draggable: false,
             theme: "colored",
-            progress: undefined
-           });
-        navigate("/login")
+            progress: undefined,
+        });
+            navigate("/login")
         }
     }, [token])
     
@@ -111,7 +131,7 @@ import { ToastContainer, toast } from 'react-toastify';
         tipo_profissional:"",
         atendimento: "",
         modalidade_categoria: "",
-        avaliacao: "",
+        avaliacao: 0,
         image_link: ""
     })
     useEffect(()=>{
@@ -151,6 +171,7 @@ import { ToastContainer, toast } from 'react-toastify';
             tema:tema
         })
     }
+
 
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
       e.preventDefault()
@@ -215,22 +236,27 @@ import { ToastContainer, toast } from 'react-toastify';
                  });
           }
         }
-        back()
-        reloadPage();
         
-    }
+        home();
+        
 
+    }
+/*
     function back(){
         navigate("/posts")
     } 
     function reloadPage() {
       window.location.reload();
     }
-    
+    */
 
+    function home(){
+      navigate("/home")
+  }
   return (
    <div className="background">
     <>
+
     <Button variant="outlined" className="btn-postagem" onClick={handleClickOpen}>
         Nova postagem
       </Button>
@@ -274,7 +300,7 @@ import { ToastContainer, toast } from 'react-toastify';
                           }
                     </Select>
                     <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type="submit" variant="contained" color="primary" onClick={reloadPage}>
+                    <Button type="submit" variant="contained" color="primary" >
                         Finalizar
                     </Button>
                 </FormControl>
@@ -359,13 +385,9 @@ import { ToastContainer, toast } from 'react-toastify';
            </Grid>
            <Grid item xs={2}/>
            </Grid>
-         
         
        ))}
-       
-       
      
-   
     </>
     </div>
   );
