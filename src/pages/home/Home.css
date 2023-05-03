@@ -122,4 +122,7 @@
 .list{
   display: flex;
 }
+.card{
+  height: 30vh;
+}
 /*infinite alternate = deixa o texto em loop*/

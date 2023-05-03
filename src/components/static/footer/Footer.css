@@ -15,9 +15,13 @@
 .texto-footer{
     font-size: 18px!important;
     font-weight: bold;
+    font-family: 'Bellota Text', cursive!important;
+    text-align: center!important;
 }
 .texto-footer-2{
     font-size: 15px!important;
+    font-family: 'Bellota Text', cursive!important;
+    text-align: justify!important;
 }
 
 .foto{
@@ -56,3 +60,9 @@
     background-color: white;
   
   }
+  .MuiTypography-body1{
+    font-family: 'Bellota Text', cursive!important;
+  }
+.txt-footer{
+  font-family: 'Bellota Text', cursive!important;
+}

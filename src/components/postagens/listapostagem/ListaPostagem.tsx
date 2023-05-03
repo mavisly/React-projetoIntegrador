@@ -70,11 +70,7 @@ function ListaPostagem() {
       navigate("/login")
 
 
-      if (token == "") {
-        alert("Você precisa estar logado");
-        navigate("/login");
-       
-      }
+  }
     
   }, [token]);
 
@@ -123,7 +119,7 @@ function ListaPostagem() {
         tipo_profissional:"",
         atendimento: "",
         modalidade_categoria: "",
-        avaliacao: "",
+        avaliacao: 0,
         image_link: ""
     })
     useEffect(()=>{
@@ -164,6 +160,7 @@ function ListaPostagem() {
         })
     }
 
+    /** ADICIONAR TOASTFY */
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault()
         if (id !== undefined){
@@ -181,18 +178,22 @@ function ListaPostagem() {
             })
             alert("Postagem cadastrada com sucesso");
         }
-        back()
-        reloadPage();
+        // back()
+        home();
+        /*reloadPage();*/
     }
-
+/*
     function back(){
         navigate("/posts")
     } 
     function reloadPage() {
       window.location.reload();
     }
-    
+    */
 
+    function home(){
+      navigate("/home")
+  }
   return (
    <div className="background">
     <>
@@ -240,7 +241,7 @@ function ListaPostagem() {
                           }
                     </Select>
                     <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type="submit" variant="contained" color="primary" onClick={reloadPage}>
+                    <Button type="submit" variant="contained" color="primary" >
                         Finalizar
                     </Button>
                 </FormControl>
