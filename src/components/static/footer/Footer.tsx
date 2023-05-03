@@ -31,7 +31,7 @@ function Footer() {
                 <List component="nav" className="root" aria-label="mailbox folders">
                     <ListItem >
                         <ListItemIcon>
-                            <AddLocation />
+                            <AddLocation/>
                         </ListItemIcon>
                         <ListItemText primary="São Paulo - SP" />
                     </ListItem>
@@ -77,7 +77,7 @@ function Footer() {
                         className="bg-white"
                     />
                     <br /> 
-                    <button className='button'>Enviar</button>
+                    <button className='button txt-footer'>Enviar</button>
                 </Box>
                    
 

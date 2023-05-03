@@ -20,6 +20,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Contato from "./pages/contato/Contato";
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
         <Route path ="/formularioPostagem" element={<CadastroPosts />} />;
         <Route path ="/formularioPostagem/:id" element={<CadastroPosts />} />;
         <Route path="/deletarPostagem/:id" element={<DeletarPost />} />;
-
+        <Route path="/contato" element={<Contato />} />
       </Routes>
       </div>
     <Footer />
