@@ -189,18 +189,18 @@ function Home() {
                 </Grid>
 
                 <Grid xs={12} alignItems="center" container justifyContent="center">
-                    <AppBar position="static">
+                    <AppBar position="static" className="bar-2">
                         <Toolbar variant="dense">
-                            <Typography variant="h6" color="inherit" component="div">
+                            <Typography variant="h6" color="inherit" component="div" className="txt2">
                                 Assuntos que podem te interessar.
                             </Typography>
                         </Toolbar>
                     </AppBar>
                    
 
-                        <Box display="flex" alignItems="center" justifyContent="center" >
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
+                        <Box>
+                            <Card sx={{ width: 345 }}>
+                               
                                     <CardMedia
                                         component="img"
                                         height="300"
@@ -208,17 +208,17 @@ function Home() {
                                         alt="green iguana"
                                     />
                                     <CardContent className="card">
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h5" component="div" className="txt2">
                                             ODS 3
                                         </Typography>
-                                        <Typography variant="h6">
+                                        <Typography variant="h6" className="txt2">
                                         Saúde e Bem-Estar
                                         </Typography>
-                                        <Typography variant="body2">
+                                        <Typography variant="body2" className="txt2">
                                             Garantir o acesso à saúde de qualidade e promover o bem-estar para todos, em todas as idades
                                         </Typography>
                                     </CardContent>
-                                </CardActionArea>
+                               
                                 <CardActions>
                                     <Link to='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-mental' target="_blank">
                                     <Button size="small" color="primary" className="botao">
@@ -229,9 +229,9 @@ function Home() {
                             </Card>
                         </Box>
 
-                        <Box display="flex" alignItems="center" justifyContent="center" paddingX={5}>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
+                        <Box paddingX={5}>
+                            <Card sx={{ width: 345 }}>
+                                
                                     <CardMedia
                                         component="img"
                                         height="300"
@@ -240,17 +240,17 @@ function Home() {
                                         className="card-img"
                                     />
                                     <CardContent className="card">
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h5" component="div" className="txt2">
                                         Saúde Mental
                                         </Typography>
-                                        <Typography variant="h6">
+                                        <Typography variant="h6" className="txt2">
                                         Saúde e Bem-Estar
                                         </Typography>
-                                        <Typography variant="body2">
+                                        <Typography variant="body2" className="txt2">
                                         A Política Nacional de Saúde Mental é uma ação do Governo Federal, coordenada pelo Ministério da Saúde, que compreende as estratégias e...
                                         </Typography>
                                     </CardContent>
-                                </CardActionArea>
+                               
                                 <CardActions>
                                     <Link to='https://brasil.un.org/pt-br/sdgs/3' target="_blank">
                                     <Button size="small" color="primary" className="botao">
