@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
-import { AppBar, Box, Card, InputAdornment, TextField, Toolbar } from "@mui/material";
+import { AppBar, Box, Card, CardActionArea, CardMedia, InputAdornment, TextField, Toolbar } from "@mui/material";
 import './Home.css';
 import { useSelector } from "react-redux";
 import { TokenState } from "../../store/tokens/tokensReducer";
@@ -44,29 +44,29 @@ function Home() {
 
     const [temas, setTemas] = useState<Tema[]>([]);
 
-    async function getTema(){
+    async function getTema() {
         await busca("/temas", setTemas, {
-          headers: {
-            'Authorization': token
-          }
+            headers: {
+                'Authorization': token
+            }
         })
-      }
+    }
 
-      useEffect(()=>{
+    useEffect(() => {
         getTema()
-      }, [temas.length])
-      
+    }, [temas.length])
 
-const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <>
             <Grid container direction="row" justifyContent="center" alignItems="center">
@@ -103,15 +103,15 @@ const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
                                 <Link to="/home">
                                     <Button color="inherit">Home</Button>
                                 </Link>
-                                
+
                                 <Link to="/posts">
                                     <Button color="inherit">Postagens</Button>
                                 </Link>
                                 <Link to="/formularioPostagem">
                                     <Button color="inherit">Nova Postagem</Button>
                                 </Link>
-                                
-                                
+
+
                             </Toolbar>
                         </AppBar>
                     </Box>
@@ -123,7 +123,7 @@ const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
                         <Typography variant="h5" gutterBottom component="h5" align="center" className="subtitulo-txt-animado">Um lugar de segurança e fortalecimento da sua saúde mental.</Typography>
                     </Box>
                 </Grid>
-                
+
                 <Grid alignItems="center" item xs={12}>
                     <Box display="flex" justifyContent="center">
                         <img src="https://img.freepik.com/fotos-premium/diversas-pessoas-felizes-juntos-no-parque_53876-87107.jpg?w=900" alt="" width={'500px'} />
@@ -139,96 +139,130 @@ const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
                         </Typography>
                     </Box>
 
-                <Grid alignItems="center" item xs={12}  container justifyContent="center">
-                    {
-                    temas.map(tema =>(
-                        <Box display="flex" alignItems="center" justifyContent="center" className="container-temas">
-                        
-                        <Box  marginRight={2}  paddingX={5}>
-                            <Card variant="outlined">
-                                <Box>                            
-                                    
-                                    <Typography className="txt2">
-                                        <FavoriteBorderIcon className='icons-temas'/>
-                                        Temas em alta
-                                    </Typography>
-                                    
+                    <Grid alignItems="center" item xs={12} container justifyContent="center">
+                        {
+                            temas.map(tema => (
+                                <Box display="flex" alignItems="center" justifyContent="center" className="container-temas">
+
+                                    <Box marginRight={2} paddingX={5}>
+                                        <Card variant="outlined">
+                                            <Box>
+
+                                                <Typography className="txt2">
+                                                    <FavoriteBorderIcon className='icons-temas' />
+                                                    Temas em alta
+                                                </Typography>
+
+                                            </Box>
+
+                                            <React.Fragment>
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h6" className="txt2">
+                                                        {tema.nome}
+                                                    </Typography>
+                                                    <Typography className="txt2">
+                                                        {tema.descricao}
+                                                    </Typography>
+
+                                                </CardContent>
+                                                <CardActions>
+                                                    <Link to={`/temas`} className="text-decorator-none">
+                                                        <Button size="small" className="botao">Ver Temas</Button>
+                                                    </Link>
+                                                </CardActions>
+                                            </React.Fragment>
+                                        </Card>
+                                    </Box>
                                 </Box>
+                            ))
+                        }
+                    </Grid>
 
-                                <React.Fragment>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h6" className="txt2">
-                                        {tema.nome}
-                                        </Typography>
-                                        <Typography className="txt2">
-                                        {tema.descricao}
-                                        </Typography>
-                                        
-                                    </CardContent>
-                                    <CardActions>
-                                    <Link to={`/temas`} className="text-decorator-none">
-                                        <Button size="small" className="botao">Ver Temas</Button>
-                                    </Link>
-                                    </CardActions>
-                                </React.Fragment>
-                            </Card>
-                        </Box> 
-                    </Box>
-                    ))
-                }
-            </Grid>
-            
-            <Grid xs={12} >
-              <Box display="flex" justifyContent="center" padding={10}>
-                <Link to='/formularioTema'>
-                    <Button variant="outlined" className="botao">Criar um novo tema</Button>
-                </Link>
-                        
-                </Box>
-            </Grid>
-        </Grid>
-        
-        <Grid xs={12} >
+                    <Grid xs={12} >
+                        <Box display="flex" justifyContent="center" padding={10}>
+                            <Link to='/formularioTema'>
+                                <Button variant="outlined" className="botao">Criar um novo tema</Button>
+                            </Link>
 
-        <TabPostagem/>   
-       
-        </Grid>    
-
-                <Grid xs={12} className="postagens">
-
+                        </Box>
+                    </Grid>
                 </Grid>
 
-        </Grid>
+                <Grid xs={12} alignItems="center" container justifyContent="center">
+                    <AppBar position="static" className="bar-2">
+                        <Toolbar variant="dense">
+                            <Typography variant="h6" color="inherit" component="div" className="txt2">
+                                Assuntos que podem te interessar.
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                   
 
-            <Grid container justifyContent="center" alignItems="center" xs={12} className="assuntos-relacionados">
-                <Box paddingX={5}>
-                    <img src="https://img.freepik.com/fotos-gratis/mulher-feliz-e-relaxada-pega-um-momento-despreocupado-desfruta-da-liberdade-canta-musica-mantem-os-bracos-levantados-fecha-os-olhos-danca-ao-som-da-musica-favorita-usa-camiseta-amarela-casual-isolada-na-parede-branca_273609-53278.jpg" alt="" className="imgs" />
-                    <Typography>
-                        Dicas de bem estar
-                    </Typography>
-                </Box>
-                <Box paddingX={5}>
-                    <img src="https://vivamais.cemigsaude.org.br/wp-content/uploads/2020/10/diferen%C3%A7a-entre-terapia-e-an%C3%A1lise-scaled.jpeg" alt="" className="imgs" />
-                    <Typography>
-                        Anúncios Psicólogs
-                    </Typography>
-                </Box>
-                <Box paddingX={5}>
-                    <img src="https://www.psitto.com.br/wp-content/uploads/2021/05/terapia-online-os-cinco-melhores-sites-para-se-consultar-com-psicologo-em-casa.jpg" alt="" className="imgs" />
-                    <Typography>
-                        Atendimento on-line
-                    </Typography>
-                </Box>
-                <Box paddingX={5}>
-                    <img src="https://pressreleases.scielo.org/wp-content/uploads/2020/11/csc-imagem.jpg" alt="" className="imgs" />
-                    <Typography>
-                        Atendimento público
-                    </Typography>
-                </Box>
+                        <Box>
+                            <Card sx={{ width: 345 }}>
+                               
+                                    <CardMedia
+                                        component="img"
+                                        height="300"
+                                        image="https://img.freepik.com/vetores-gratis/ilustracao-plana-do-dia-mundial-da-saude_23-2149340454.jpg?w=740&t=st=1683121465~exp=1683122065~hmac=14efcbcc91d09f035a964751f4d483bf6a0a8fe285b66dca461eaec75b35d2bf"
+                                        alt="green iguana"
+                                    />
+                                    <CardContent className="card">
+                                        <Typography gutterBottom variant="h5" component="div" className="txt2">
+                                            ODS 3
+                                        </Typography>
+                                        <Typography variant="h6" className="txt2">
+                                        Saúde e Bem-Estar
+                                        </Typography>
+                                        <Typography variant="body2" className="txt2">
+                                            Garantir o acesso à saúde de qualidade e promover o bem-estar para todos, em todas as idades
+                                        </Typography>
+                                    </CardContent>
+                               
+                                <CardActions>
+                                    <Link to='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-mental' target="_blank">
+                                    <Button size="small" color="primary" className="botao">
+                                        Ver Artigo Completo
+                                    </Button>
+                                    </Link>
+                                </CardActions>
+                            </Card>
+                        </Box>
+
+                        <Box paddingX={5}>
+                            <Card sx={{ width: 345 }}>
+                                
+                                    <CardMedia
+                                        component="img"
+                                        height="300"
+                                        image="https://img.freepik.com/fotos-premium/maos-segurando-um-cerebro-e-um-coracao-de-papel-dia-mundial-do-coracao_49149-1474.jpg?w=900"
+                                        alt=""
+                                        className="card-img"
+                                    />
+                                    <CardContent className="card">
+                                        <Typography gutterBottom variant="h5" component="div" className="txt2">
+                                        Saúde Mental
+                                        </Typography>
+                                        <Typography variant="h6" className="txt2">
+                                        Saúde e Bem-Estar
+                                        </Typography>
+                                        <Typography variant="body2" className="txt2">
+                                        A Política Nacional de Saúde Mental é uma ação do Governo Federal, coordenada pelo Ministério da Saúde, que compreende as estratégias e...
+                                        </Typography>
+                                    </CardContent>
+                               
+                                <CardActions>
+                                    <Link to='https://brasil.un.org/pt-br/sdgs/3' target="_blank">
+                                    <Button size="small" color="primary" className="botao">
+                                        Ver Artigo Completo
+                                    </Button>
+                                    </Link>
+                                </CardActions>
+                            </Card>
+                        </Box>
+                </Grid>
 
             </Grid>
-            
-        
         </>
     );
 }

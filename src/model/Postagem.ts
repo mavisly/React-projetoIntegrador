@@ -1,4 +1,5 @@
 import Tema from "./Tema";
+import User from "./User";
 
 interface Postagem{
     id:number, 
@@ -8,7 +9,8 @@ interface Postagem{
     modalidade_categoria:string,
     avaliacao:number,
     image_link: string,
-    tema?: Tema | null
+    tema?: Tema | null,
+    usuario?: User | null 
 }
 
 export default Postagem;

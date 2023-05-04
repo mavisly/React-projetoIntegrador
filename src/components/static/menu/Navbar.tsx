@@ -1,7 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
-import MenuIcon from '@material-ui/icons/Menu';
-import Button from "@material-ui/core/Button/Button";
+import './Navbar.css';
 import { Box } from "@mui/material";
 import {Link, useNavigate } from 'react-router-dom'
 
@@ -14,6 +13,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
+import "./Navbar.css"
 
 function Navbar() {
 
@@ -55,7 +55,7 @@ function Navbar() {
             
 
             <Box display="flex" justifyContent="start">
-            <Link to="/posts" className="text-decorator-none">
+            <Link to="/contato" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
                     <MailOutlineIcon className='icons-home'/>
                 </Box>
@@ -63,7 +63,7 @@ function Navbar() {
             </Box>
 
             <Box display="flex" justifyContent="start">
-            <Link to="/temas" className="text-decorator-none">
+            <Link to="/contato" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
                     <HelpOutlineIcon className='icons-home'/>
                 </Box>

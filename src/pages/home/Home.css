@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellota+Text&display=swap');
 
+
 .container-header{
   
   height: 50vh;
@@ -119,7 +120,13 @@
 .botao{
   background-color: #2c6e49!important;
 }
-.list{
-  display: flex;
+
+.card{
+  height: 30vh;
+}
+.bar-2{
+  background-color: #77bfa3!important;
+  align-items: center;
+  
 }
 /*infinite alternate = deixa o texto em loop*/

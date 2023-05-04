@@ -13,10 +13,15 @@ import CadastroPosts from "./components/postagens/cadastroPosts/CadastroPosts";
 import DeletarPost from "./components/postagens/deletarPostagem/DeletarPost";
 import ListaPostagem from "./components/postagens/listapostagem/ListaPostagem";
 
+import Posts from "./components/postagens/posts/posts";
+
+
 import { Provider } from 'react-redux';
 import store from './store/store';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Contato from "./pages/contato/Contato";
+
 
 function App() {
 
@@ -34,7 +39,7 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />;
         <Route path="/temas" element={<ListaTema />} />;
 
-        <Route path="/posts" element={<ListaPostagem />} />
+        <Route path="/posts" element={<Posts />} />
 
         <Route path="/formularioTema" element={<CadastroTema />} />;
 
@@ -44,7 +49,7 @@ function App() {
         <Route path ="/formularioPostagem" element={<CadastroPosts />} />;
         <Route path ="/formularioPostagem/:id" element={<CadastroPosts />} />;
         <Route path="/deletarPostagem/:id" element={<DeletarPost />} />;
-
+        <Route path="/contato" element={<Contato />} />
       </Routes>
       </div>
     <Footer />

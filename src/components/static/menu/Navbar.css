@@ -1,6 +1,6 @@
 .cursor{
     cursor: pointer!important;
-    color: white!important;
+    color: #ffffff!important;
 }
 
 .text-decorator-none{
@@ -10,12 +10,3 @@
 .menuButton{
     margin-right: 2px;
 }
-.icons-home{
-    color: white!important;
-    height: 10px!important;
-  }
-
- .menu{
-    align-items: center!important;
-    justify-content: center!important;
-  }
