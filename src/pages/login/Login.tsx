@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/Service";
 import UserLogin from "../../model/UserLogin";
 import { ChangeEvent, useState ,useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addToken } from "../../store/tokens/actions";
 import { toast } from "react-toastify";
 
@@ -233,8 +233,10 @@ function Login() {
  */
     
   return (
-    
+   
+    <div className="background_login">
     <>
+   
     <Grid
       container
       direction="row"
@@ -280,7 +282,9 @@ function Login() {
                 Logar
               </Button>
             </Box>
+            
             </form>
+            
             <Box display="flex" justifyContent="center" marginTop={2}>
               <Box marginRight={1}>
                 <Typography variant="subtitle1" gutterBottom align="center">
@@ -305,8 +309,10 @@ function Login() {
       </Grid>
       
     </Grid>
-
+    
     </>
+    </div>
+    
   );
 }
 

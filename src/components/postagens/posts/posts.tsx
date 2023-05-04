@@ -21,18 +21,18 @@ function Posts () {
 return(
   <>
 
-  <Grid container>
+<Grid container>
       <Grid item xs={6} ></Grid>
-      <Grid item xs={2}>{showSpinner && <Loader /> }</Grid>
-  
+      <Grid item xs={2}>{showSpinner && <Loader /> }
+      </Grid>
     </Grid>
-      <Grid item xs={4} className="background"></Grid>
+      <Grid item xs={4} className="background_listapostagem"></Grid>
     <Grid container>
-      <Grid item xs={3} className="background"></Grid>
+      <Grid item xs={3} className="background_listapostagem"></Grid>
       <Grid item xs={6}>
       {showContent && <ListaPostagem/>}
       </Grid>
-      <Grid item xs={3} className="background"></Grid>
+      <Grid item xs={3} className="background_listapostagem"></Grid>
   </Grid>
     </>
 

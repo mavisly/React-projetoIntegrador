@@ -40,7 +40,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
-import { toast } from 'react-toastify';
 
 function ListaPostagem() {
   const [posts, setPosts] = useState<Postagem[]>([])
@@ -254,7 +253,7 @@ function ListaPostagem() {
       navigate("/home")
   }
   return (
-   <div className="background">
+   <div className="background_listapostagem">
     <>
 
     <Button variant="outlined" className="btn-postagem" onClick={handleClickOpen}>
@@ -369,6 +368,9 @@ function ListaPostagem() {
                            variant="contained"
                            className="marginLeft"
                            size="small"
+                           color="secondary"
+                           id="botaodeletar"
+
                            
                          >
                            deletar

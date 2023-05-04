@@ -243,16 +243,7 @@ button{
   margin-right: 4px;
 }
 */
-@import url("https://rsms.me/inter/inter-ui.css");
-::selection {
-  background: #2d2f36;
-}
-::-webkit-selection {
-  background: #2d2f36;
-}
-::-moz-selection {
-  background: #2d2f36;
-}
+
 /* *,
 *:before,
 *:after {
@@ -261,9 +252,8 @@ button{
   box-sizing: border-box;
 } */
 
-body {
-  height: 100vh;
-  background: linear-gradient(90deg, #e52e71, #ff8a00);
+
+
 
   /* .background {
     width: 430px;
@@ -284,7 +274,7 @@ body {
     right: -30px;
     bottom: -80px;
   } */
-}
+
 
 /* .page {
   background: #1515f0;
@@ -295,110 +285,108 @@ body {
   place-content: center;
   width: calc(100% - 40px);
 } */
-@media (max-width: 767px) {
-  .page {
-    height: auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-  }
+
+
+
+ @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+.background_login  {
+    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+  background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
 }
-.container {
-  display: flex;
-  height: 320px;
-  margin: 0 auto;
-  width: 640px;
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
 }
-@media (max-width: 767px) {
-  .container {
-    flex-direction: column;
-    height: 630px;
-    width: 320px;
-  }
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+
 }
-.left {
-  background: white;
-  height: calc(100% - 40px);
-  top: 20px;
-  position: relative;
-  width: 50%;
+
+
+
+.center h1{
+  text-align:center;
+  color:white;
+  font-family: 'Source Code Pro', monospace;
+  text-transform:uppercase;
 }
-@media (max-width: 767px) {
-  .left {
-    height: 100%;
-    left: 20px;
-    width: calc(100% - 40px);
-    max-height: 270px;
-  }
+
+
+
+/* body {                      Bolão
+  height: 100vh;
+   background: linear-gradient(90deg,#e52e71,#ff8a00);
+
 }
-.login {
-  font-size: 50px;
-  font-weight: 900;
-  margin: 50px 40px 40px;
-}
-.eula {
-  color: #999;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 40px;
-}
-.right {
-  background: #474a59;
-  box-shadow: 0px 0px 40px 16px rgba(0, 0, 0, 0.22);
-  color: #f1f1f2;
-  position: relative;
-  width: 50%;
-}
-@media (max-width: 767px) {
-  .right {
-    flex-shrink: 0;
-    height: 100%;
-    width: 100%;
-    max-height: 350px;
-  }
-}
-svg {
+
+.slider-thumb::before {
   position: absolute;
-  width: 320px;
-}
-path {
-  fill: none;
-  stroke: url(#linearGradient);
-  stroke-width: 4;
-  stroke-dasharray: 240 1386;
-}
-.form {
-  margin: 40px;
-  position: absolute;
-}
-label {
-  color: #c2c2c5;
+  content: "";
+  left: 30%;
+  top: 20%;
+  width: 450px;
+  height: 450px;
+  background: #17141d;
+  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+  will-change: border-radius, transform, opacity;
+  animation: sliderShape 5s linear infinite;
   display: block;
-  font-size: 14px;
-  height: 16px;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  z-index: -1;
+  -webkit-animation: sliderShape 5s linear infinite;
 }
-input {
-  background: transparent;
-  border: 0;
-  color: #f2f2f2;
-  font-size: 20px;
-  height: 30px;
-  line-height: 30px;
-  outline: none !important;
-  width: 100%;
+@keyframes sliderShape{
+  0%,100%{
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  34%{
+      border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform:  translate3d(0,5px,0) rotateZ(0.01deg);
+  }
+  50%{
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  67%{
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60% ;
+    transform: translate3d(0,-3px,0) rotateZ(0.01deg);
+  }
 }
-input::-moz-focus-inner {
-  border: 0;
+
+.login {
+  background-color: rgba(240, 248, 255, 0);
+} */
+
+
+
+
+/* @import url("https://rsms.me/inter/inter-ui.css");                   Estatico Gradiente
+::selection {
+  background: #2d2f36;
 }
-#submit {
-  color: #707075;
-  margin-top: 40px;
-  transition: color 300ms;
+::-webkit-selection {
+  background: #2d2f36;
 }
-#submit:focus {
-  color: #f2f2f2;
+::-moz-selection {
+  background: #2d2f36;
 }
-#submit:active {
-  color: #d0d0d2;
-}
+
+
+.background {              
+  height: 100vh;
+  background: linear-gradient(90deg, #e52e71, #ff8a00);
+} */

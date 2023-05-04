@@ -200,7 +200,7 @@ function Home() {
 
                         <Box display="flex" alignItems="center" justifyContent="center" >
                             <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
+                                
                                     <CardMedia
                                         component="img"
                                         height="300"
@@ -218,7 +218,7 @@ function Home() {
                                             Garantir o acesso à saúde de qualidade e promover o bem-estar para todos, em todas as idades
                                         </Typography>
                                     </CardContent>
-                                </CardActionArea>
+                                
                                 <CardActions>
                                     <Link to='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-mental' target="_blank">
                                     <Button size="small" color="primary" className="botao">
@@ -231,7 +231,7 @@ function Home() {
 
                         <Box display="flex" alignItems="center" justifyContent="center" paddingX={5}>
                             <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
+                                
                                     <CardMedia
                                         component="img"
                                         height="300"
@@ -250,7 +250,7 @@ function Home() {
                                         A Política Nacional de Saúde Mental é uma ação do Governo Federal, coordenada pelo Ministério da Saúde, que compreende as estratégias e...
                                         </Typography>
                                     </CardContent>
-                                </CardActionArea>
+                                
                                 <CardActions>
                                     <Link to='https://brasil.un.org/pt-br/sdgs/3' target="_blank">
                                     <Button size="small" color="primary" className="botao">
