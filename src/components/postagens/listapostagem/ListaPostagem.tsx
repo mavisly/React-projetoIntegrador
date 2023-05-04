@@ -9,13 +9,13 @@ import {
   CardContent,
   Typography,
   Button,
- 
+
 } from "@material-ui/core";
 import { Box, CircularProgress, Container, Dialog, DialogTitle, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import "./ListaPostagem.css";
 import { MdFilledButton } from '@material/web/button/filled-button.js';
-import {MdOutlinedButton} from'@material/web/button/outlined-button.js';
-import {MdCheckbox} from '@material/web/checkbox/checkbox.js';
+import { MdOutlinedButton } from '@material/web/button/outlined-button.js';
+import { MdCheckbox } from '@material/web/checkbox/checkbox.js';
 
 import useLocalStorage from "react-use-localstorage";
 import { useNavigate } from "react-router-dom";
@@ -38,12 +38,14 @@ import Tema from "../../../model/Tema";
 import { ToastContainer, toast } from 'react-toastify';
 
 
+
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 
+
 function ListaPostagem() {
   const [posts, setPosts] = useState<Postagem[]>([])
- 
+
   const token = useSelector<TokenState, TokenState["tokens"]>(
     (state) => state.tokens
   );
@@ -52,8 +54,8 @@ function ListaPostagem() {
   let navigate = useNavigate();
 
 
-  
-  const {id} = useParams<{id:string}>();
+
+  const { id } = useParams<{ id: string }>();
   useEffect(() => {
 
     if (token == "") {
@@ -66,12 +68,12 @@ function ListaPostagem() {
         draggable: false,
         theme: "light",
         progress: undefined,
-    });
+      });
       navigate("/login")
 
 
-  }
-    
+    }
+
   }, [token]);
 
   async function getPost() {
@@ -83,8 +85,8 @@ function ListaPostagem() {
   }
 
   useEffect(() => {
-      getPost();
-    
+    getPost();
+
   }, [posts.length]);
 // Abre e fecha botão nova postagem
   const [open, setOpen] = React.useState(false);
@@ -98,6 +100,7 @@ function ListaPostagem() {
   };
 // CadastroPost
   const [temas, setTemas] = useState<Tema[]>([]);
+
   
     
     useEffect(()=> {
@@ -124,52 +127,70 @@ function ListaPostagem() {
         descricao:""
     })
 
-    const [postagem, setPostagem] = useState<Postagem>({
-        id:0,
-        informacoes:"",
-        tipo_profissional:"",
-        atendimento: "",
-        modalidade_categoria: "",
-        avaliacao: 0,
-        image_link: ""
+
+
+  useEffect(() => {
+    if (token == "") {
+      alert("Você precisa estar logado")
+      navigate("/login")
+    }
+  }, [token])
+
+  const [tema, setTema] = useState<Tema>({
+    id: 0,
+    nome: "",
+    descricao: ""
+  })
+
+  const [postagem, setPostagem] = useState<Postagem>({
+    id: 0,
+    informacoes: "",
+    tipo_profissional: "",
+    atendimento: "",
+    modalidade_categoria: "",
+    avaliacao: 0,
+    image_link: ""
+  })
+
+
+  useEffect(() => {
+    setPostagem({
+      ...postagem,
+      tema: tema
     })
-    useEffect(()=>{
-        setPostagem({
-            ...postagem,
-            tema: tema
-        })
-    }, [tema])
+  }, [tema])
 
-    useEffect(()=> {
-        getTemas()
-        if (id !== undefined){
-            findByIdPostagem(id)
-        }
-    }, [id])
-
-    async function getTemas(){
-        await busca("/temas", setTemas, {
-            headers: {
-                "Authorization": token
-            }
-        })
+  useEffect(() => {
+    getTemas()
+    if (id !== undefined) {
+      findByIdPostagem(id)
     }
+  }, [id])
 
-    async function findByIdPostagem(id:string){
-        await buscaId(`/postagens/${id}`, setPostagem, {
-            headers: {
-                "Authorization": token
-            }
-        })
-    }
+  async function getTemas() {
+    await busca("/temas", setTemas, {
+      headers: {
+        "Authorization": token
+      }
+    })
+  }
 
-    function updatedPostagem(e: ChangeEvent<HTMLInputElement>){
-        setPostagem({
-            ...postagem,
-            [e.target.name]: e.target.value,
-            tema:tema
-        })
-    }
+  async function findByIdPostagem(id: string) {
+    await buscaId(`/postagens/${id}`, setPostagem, {
+      headers: {
+        "Authorization": token
+      }
+    })
+  }
+
+  function updatedPostagem(e: ChangeEvent<HTMLInputElement>) {
+    setPostagem({
+      ...postagem,
+      [e.target.name]: e.target.value,
+      tema: tema
+    })
+  }
+
 
 
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
@@ -240,19 +261,12 @@ function ListaPostagem() {
         
 
     }
-/*
-    function back(){
-        navigate("/posts")
-    } 
-    function reloadPage() {
-      window.location.reload();
-    }
-    */
 
-    function home(){
-      navigate("/home")
+  function home() {
+    navigate("/home")
   }
   return (
+
    <div className="background_listapostagem">
     <>
 
@@ -271,38 +285,40 @@ function ListaPostagem() {
             <form onSubmit={onSubmit} className="formulario" >
             <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
                 <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="informacoes" variant="outlined" name="informacoes" margin="normal" fullWidth />
+
                 <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="tipo_profissional" label="tipo_profissional" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
+                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="tipo_profissional" label="tipo_profissional" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
                 <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="atendimento" label="atendimento" variant="outlined" name="atendimento" margin="normal" fullWidth />
+                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="atendimento" label="atendimento" variant="outlined" name="atendimento" margin="normal" fullWidth />
                 <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="modalidade_categoria" label="modalidade_categoria" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
+                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="modalidade_categoria" label="modalidade_categoria" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
                 <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="avaliacao" label="avaliacao" variant="outlined" name="avaliacao" margin="normal" fullWidth />
+                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="avaliacao" label="avaliacao" variant="outlined" name="avaliacao" margin="normal" fullWidth />
                 <FormHelperText>min = 0 a 10</FormHelperText>
-                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="image_link" label="image_link" variant="outlined" name="image_link" margin="normal" fullWidth />
+                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="image_link" label="image_link" variant="outlined" name="image_link" margin="normal" fullWidth />
                 <FormHelperText>Usar que nem blogPessoal</FormHelperText>
                 <FormControl >
-                    <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
-                    <Select
-                        labelId="demo-simple-select-helper-label"
-                        id="demo-simple-select-helper"
-                        onChange={(e => buscaId(`/temas/${e.target.value}`, setTema,{
-                            headers: {
-                                "Authorization": token
-                            }
-                        }))}>
-                          {
-                            temas.map(tema => (
-                                <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
-                            ))
-                          }
-                    </Select>
-                    <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type="submit" variant="contained" color="primary" >
-                        Finalizar
-                    </Button>
+                  <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    onChange={(e => buscaId(`/temas/${e.target.value}`, setTema, {
+                      headers: {
+                        "Authorization": token
+                      }
+                    }))}>
+                    {
+                      temas.map(tema => (
+                        <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
+                      ))
+                    }
+                  </Select>
+                  <FormHelperText>Escolha um tema para a postagem</FormHelperText>
+                  <Button type="submit" variant="contained" color="primary" >
+                    Finalizar
+                  </Button>
                 </FormControl>
+
             </form>
         </Container>
         </DialogContent>
@@ -395,7 +411,7 @@ function ListaPostagem() {
   );
 }
 
-export default ListaPostagem; 
+export default ListaPostagem;
 
 
 

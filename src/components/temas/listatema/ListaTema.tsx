@@ -1,81 +1,93 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import {Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
-import {Box} from '@mui/material';
+import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
+import { Box, Grid } from '@mui/material';
 import useLocalStorage from 'react-use-localstorage';
 import Tema from '../../../model/Tema';
 import { busca } from '../../../services/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import './ListaTema.css';
+import { Create, Delete } from '@mui/icons-material';
 
 function ListaTema() {
-    const [temas, setTemas] = useState<Tema[]>([]);
+  const [temas, setTemas] = useState<Tema[]>([]);
 
-    const token = useSelector<TokenState, TokenState["tokens"]>(
-      (state) => state.tokens
-    );
-  
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
 
-    let navigate = useNavigate();
 
-    useEffect(()=>{
-        if(token == ''){
-          alert("Você precisa estar logado!")
-          navigate("/login")
-        }
-      }, [token]);
+  let navigate = useNavigate();
 
-      async function getTema(){
-        await busca("/temas", setTemas, {
-          headers: {
-            'Authorization': token
-          }
-        })
+  useEffect(() => {
+    if (token == '') {
+      alert("Você precisa estar logado!")
+      navigate("/login")
+    }
+  }, [token]);
+
+  async function getTema() {
+    await busca("/temas", setTemas, {
+      headers: {
+        'Authorization': token
+      }
+    })
+  }
+
+  useEffect(() => {
+    getTema()
+  }, [temas.length])
+
+  return (
+    <>
+      {
+        temas.map(tema => (
+          <Grid xs={4}>
+            
+            <Box paddingTop={1} paddingBottom={1} paddingLeft={1}>
+              <div className="paper">
+                <div className="pin">
+                  <div className="shadow"></div>
+                  <div className="metal"></div>
+                  <div className="bottom-circle"></div>
+                </div>
+                <Typography align="center">{tema.nome}</Typography>
+                <Typography align="center" className="descricao">{tema.descricao}</Typography>
+
+            <Box display="flex" justifyContent="flex-end" className="bt">
+                <Link to={`/formularioTema/${tema.id}`} className="text-decorator-none" >
+                  <Button 
+                  variant="contained" 
+                  size='small' 
+                  color="primary" 
+                  startIcon={<Create />}
+                  >
+                    Atualizar
+                  </Button>
+                </Link>
+
+                <Link to={`/deletarTema/${tema.id}`} className="text-decorator-none">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<Delete />}
+                    size="small"
+                  >
+                    Deletar
+                  </Button>
+
+                </Link>
+                </Box>
+              </div>
+            </Box>
+           
+          </Grid>
+
+
+        ))
       }
 
-      useEffect(()=>{
-        getTema()
-      }, [temas.length])
-    
-    return (
-    <>
-    {
-    temas.map(tema =>( 
-      <Box m={2} >
-        <Card variant="outlined">
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              {tema.nome}
-            </Typography>
-            <Typography variant="h5" component="h2">
-              {tema.descricao}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Box display="flex" justifyContent="center" mb={1.5} >
-
-              <Link to={`/formularioTema/${tema.id}`} className="text-decorator-none">
-                <Box mx={1}>
-                  <Button variant="contained" className="marginLeft" size='small' color="primary" >
-                    atualizar
-                  </Button>
-                </Box>
-              </Link>
-
-              <Link to={`/deletarTema/${tema.id}`} className="text-decorator-none">
-                <Box mx={1}>
-                  <Button variant="contained" size='small' color="secondary">
-                    deletar
-                  </Button>
-                </Box>
-              </Link>
-            </Box>
-          </CardActions>
-        </Card>
-      </Box>
-    ))
-    }
     </>
   );
 }

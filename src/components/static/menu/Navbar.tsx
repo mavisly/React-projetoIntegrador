@@ -13,6 +13,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
+import "./Navbar.css"
 
 function Navbar() {
 
