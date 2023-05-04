@@ -57,6 +57,7 @@ return (
                     fullWidth
                     rows={4}
                     variant="filled"
+                    
                     />
                    </Box>
                     
@@ -66,7 +67,7 @@ return (
                                 Cancelar
                             </Button>
                         
-                        <Button variant='contained' color='primary'className='botao-contato'>
+                        <Button variant='contained' color='primary' className='botao-contato'>
                             Enviar
                         </Button>
                     </Box>

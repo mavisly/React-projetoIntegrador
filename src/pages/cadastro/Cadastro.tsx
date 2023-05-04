@@ -81,12 +81,12 @@ function Cadastro() {
     }
         
     return (
-        <Grid container direction='row' justifyContent='center' alignItems='center'>
-            <Grid item xs={6} className='imagem2'></Grid>
-            <Grid item xs={6} alignItems='center'>
+        <Grid container direction='row' justifyContent='center' alignItems='center'className="container-img">
+            
+            <Grid item xs={6} alignItems='center' >
                 <Box paddingX={10}>
-                    <form  onSubmit={onSubmit}>
-                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className='textos2'>Cadastrar</Typography>
+                    <form  onSubmit={onSubmit} className="bg-cadastro">
+                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className="contato-titulo">Faça parte da nossa Comunidade</Typography>
                         <TextField value={User.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='nome' label='Nome' variant='outlined' name='nome' margin='normal' fullWidth placeholder="Insira seu nome" required />
                         <TextField value={User.email} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='email' label='E-mail' variant='outlined' name='email' margin='normal' type='email' fullWidth placeholder="Insira seu melhor e-mail" required />
                         <TextField value={User.foto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='foto' label='Foto' variant='outlined' name='foto' margin='normal' fullWidth  placeholder='Insira um link de foto' />
@@ -95,11 +95,11 @@ function Cadastro() {
                         <TextField value={confirmarSenha} onChange={(e: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(e)}id='confirmarSenha' label='Confirmar Senha' variant='outlined' name='confirmarSenha' margin='normal' type='password' fullWidth placeholder="Repita sua senha" required />
                         <Box marginTop={2} textAlign='center'>
                             <Link to='/login' className='text-decorator-none'>
-                                <Button variant='contained' color='secondary' className='btnCancelar'>
+                                <Button variant='contained' color='secondary'  className='botao-contato'>
                                     Cancelar
                                 </Button>
                             </Link>
-                            <Button type='submit' variant='contained' color='primary'>
+                            <Button type='submit' variant='contained' color='primary'  className='botao-contato'>
                                 Cadastrar
                             </Button>
                         </Box>

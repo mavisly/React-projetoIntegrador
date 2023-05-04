@@ -3,14 +3,15 @@ img: https://img.freepik.com/vetores-gratis/mencao-conceito-ilustracao_114360-23
 */
 .contato-titulo{
     font-family: 'Bellota Text', cursive!important;
-    color: white;
+    color: white!important;
     font-weight: lighter!important;
 }
 
 .bg {
     width: 100%;
     height: 80vh;
-   padding: 30px;
+    margin-top: 50px;
+    padding: 20px;
     background-size: 300% 300%;
     background-image: linear-gradient(-45deg, #99e2b4 25%, #99e2b4 25%, #036666 51%, #036666 80%);
     -webkit-animation: AnimateBG 20s ease infinite;
@@ -42,5 +43,10 @@ img: https://img.freepik.com/vetores-gratis/mencao-conceito-ilustracao_114360-23
   }
   .botao-contato{
     background-color: #77bfa3!important;
-    margin: 10px!important;
+    margin-right: 10px!important;
+  }
+
+  .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root{
+    color: white!important;
+    font-family: 'Bellota Text', cursive!important;
   }
