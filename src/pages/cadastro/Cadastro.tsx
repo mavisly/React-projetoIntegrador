@@ -107,6 +107,7 @@ function Cadastro() {
                 </Box>
             </Grid>
         </Grid>
+        
     );
 }
 
