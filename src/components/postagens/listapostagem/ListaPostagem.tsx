@@ -274,9 +274,9 @@ function ListaPostagem() {
                   </Card>
                   <Card variant="outlined" className="posts"   >
                     <CardContent>
-                      <Typography color="textSecondary" gutterBottom>
-                        Postagem
-                      </Typography>
+                    <Typography variant="body2" component="p">
+                        {post.usuario?.usuario}
+                    </Typography>
                       <Typography variant="h5" component="h2">
                         {post.informacoes}
                       </Typography>
