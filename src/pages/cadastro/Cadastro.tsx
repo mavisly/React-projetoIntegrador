@@ -55,7 +55,7 @@ function Cadastro() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         if(confirmarSenha == User.senha){
-        cadastroUsuario(`/usuarios/cadastrar`, User, setUserResult)
+        await cadastroUsuario(`/usuarios/cadastrar`, User, setUserResult)
         toast.success('Usuario cadastrado com sucesso', {
             position: "top-right",
             autoClose: 2000,
@@ -99,9 +99,11 @@ function Cadastro() {
                                     Cancelar
                                 </Button>
                             </Link>
+                            
                             <Button type='submit' variant='contained' color='primary'  className='botao-contato'>
                                 Cadastrar
                             </Button>
+                            
                         </Box>
                     </form>
                 </Box>
