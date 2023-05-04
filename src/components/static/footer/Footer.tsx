@@ -51,7 +51,7 @@ function Footer() {
                     <Typography variant="h6" align="center" gutterBottom className='texto-footer'>Nos conheça!</Typography>
                 </Box>
                 <Box display="flex" alignItems="center" justifyContent="center">
-                    <Link href='https://linktr.ee/refugiomental'>
+                    <Link href='https://linktr.ee/refugiomental' target="_blank">
                         <img src="src\assets\img\linktree.png" alt="Link para o Linktree" className="foto" />
                     </Link>
                 </Box>
