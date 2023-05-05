@@ -105,16 +105,14 @@ function ListaPostagem() {
     
     useEffect(()=> {
         if (token ==""){
-
           toast.error('Você precisa estar logado!', {
-
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
-            theme: "colored",
+            theme: "light",
             progress: undefined,
         });
             navigate("/login")
@@ -131,7 +129,16 @@ function ListaPostagem() {
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado")
+        toast.error('Você precisa estar logado!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "light",
+        progress: undefined,
+    });
       navigate("/login")
     }
   }, [token])
@@ -206,7 +213,7 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
           } catch (error) {
@@ -217,7 +224,7 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
           }
@@ -236,9 +243,11 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
+                 /* com o home() aqui, se houver erro no cadastro de postagem, não retorna para o home. assim podemos corrigir os dados errados sem precisar voltar para cadastro.  */
+                 home();
           } catch (error) {
               toast.error('Erro ao cadastrar, verifique os campos!', {
                   position: "top-right",
@@ -247,15 +256,11 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
           }
         }
-        
-        home();
-        
-
     }
 
   function home() {
@@ -280,19 +285,22 @@ function ListaPostagem() {
           <Container maxWidth="sm" className="container_formulario">
             <form onSubmit={onSubmit} className="formulario" >
             <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
-                <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="informacoes" variant="outlined" name="informacoes" margin="normal" fullWidth />
+                <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="Informações, mínimo de 5 caracteres" variant="outlined" name="informacoes" margin="normal" fullWidth />
 
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="tipo_profissional" label="tipo_profissional" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="atendimento" label="atendimento" variant="outlined" name="atendimento" margin="normal" fullWidth />
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="modalidade_categoria" label="modalidade_categoria" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="avaliacao" label="avaliacao" variant="outlined" name="avaliacao" margin="normal" fullWidth />
-                <FormHelperText>min = 0 a 10</FormHelperText>
-                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="image_link" label="image_link" variant="outlined" name="image_link" margin="normal" fullWidth />
-                <FormHelperText>Usar que nem blogPessoal</FormHelperText>
+                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="tipo_profissional" label="Tipo Profissional, mínimo de 10 caracteres" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
+
+
+                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="atendimento" label="Atendimento, mínimo 15 caracteres" variant="outlined" name="atendimento" margin="normal" fullWidth />
+
+                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="modalidade_categoria" label="Modalidade categoria, mínimo 5 caracteres" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
+
+
+                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="avaliacao" label="Avaliação" variant="outlined" name="avaliacao" margin="normal" fullWidth />
+                
+
+                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="image_link" label="Image Link, 5 caracteres" variant="outlined" name="image_link" margin="normal" fullWidth />
+
+
                 <FormControl >
                   <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
                   <Select
