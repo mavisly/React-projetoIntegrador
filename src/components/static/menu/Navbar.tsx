@@ -63,7 +63,7 @@ function Navbar() {
             </Box>
 
             <Box display="flex" justifyContent="start">
-            <Link to="/contato" className="text-decorator-none">
+            <Link to="/duvidas" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
                     <HelpOutlineIcon className='icons-home'/>
                 </Box>

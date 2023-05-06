@@ -35,6 +35,10 @@ background-image: linear-gradient(-45deg, #99e2b4 25%, #99e2b4 25%, #036666 51%,
 }
 }
 
+.botao-cadastro{
+    background-color: #77bfa3!important;
+    margin-right: 10px!important;
+}
 
 .container-img{
     background-image: url('https://img.freepik.com/fotos-gratis/diversas-pessoas-felizes-desfrutando-no-parque_53876-63295.jpg?w=900&t=st=1683152147~exp=1683152747~hmac=93dfa3dc9378d59f8a06141fa82c5ec4e4176468b0648887850581096defaf4d');

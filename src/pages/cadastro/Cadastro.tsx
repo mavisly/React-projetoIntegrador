@@ -116,12 +116,12 @@ function Cadastro() {
                         <Box marginTop={2} textAlign='center'>
                            
                             <Link to='/login' className='text-decorator-none'>
-                                <Button variant='contained' color='secondary'  className='botao-contato'>
+                                <Button variant='contained' color='secondary'  className='botao-cadastro'>
                                     Cancelar
                                 </Button>
                             </Link>
                             
-                            <Button type='submit' variant='contained' color='primary'  className='botao-contato'>
+                            <Button type='submit' variant='contained' color='primary'  className='botao-cadastro'>
                                 Cadastrar
                             </Button>
                             

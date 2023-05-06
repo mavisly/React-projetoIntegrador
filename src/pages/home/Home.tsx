@@ -107,12 +107,7 @@ function Home() {
                                 <Link to="/posts">
                                     <Button color="inherit">Postagens</Button>
                                 </Link>
-                                <Link to="/formularioPostagem">
-                                    <Button color="inherit">Nova Postagem</Button>
-                                </Link>
-
-
-                            </Toolbar>
+                                   </Toolbar>
                         </AppBar>
                     </Box>
                 </Grid>
