@@ -54,7 +54,8 @@ function Cadastro() {
 
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        if(confirmarSenha == User.senha){
+        if (confirmarSenha == User.senha) {
+        try {
         await cadastroUsuario(`/usuarios/cadastrar`, User, setUserResult)
         toast.success('Usuario cadastrado com sucesso', {
             position: "top-right",
@@ -66,7 +67,8 @@ function Cadastro() {
             theme: "light",
             progress: undefined,
             });
-        }else{
+        }
+        catch(error) {
             toast.error('Dados inconsistentes. Favor verificar as informações de cadastro.', {
                 position: "top-right",
                 autoClose: 2000,
@@ -76,8 +78,21 @@ function Cadastro() {
                 draggable: false,
                 theme: "light",
                 progress: undefined,
-                });
+            });
         }
+    }
+    else{
+        toast.error('Dados inconsistentes. Favor verificar as informações de cadastro.', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light",
+            progress: undefined,
+        });
+    }
     }
         
     return (
@@ -88,17 +103,18 @@ function Cadastro() {
                     <form  onSubmit={onSubmit} className="bg-cadastro">
                         <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className="contato-titulo">Faça parte da nossa Comunidade</Typography>
                         
-                        <TextField value={User.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='nome' label='Nome' variant='outlined' name='nome' margin='normal' fullWidth placeholder="Insira seu nome" required />
+                        <TextField value={User.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='nome' label='nome' variant='outlined' name='nome' margin='normal' fullWidth placeholder="insira seu nome " required />
                         
-                        <TextField value={User.usuario} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='email' label='E-mail' variant='outlined' name='email' margin='normal' type='email' fullWidth placeholder="mail@email.com.br" required />
+                        <TextField value={User.email} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='email' label='nome de usuário' variant='outlined' name='email' margin='normal'  fullWidth placeholder="nomeusuario" required />
                         
-                        <TextField value={User.foto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='foto' label='Foto' variant='outlined' name='foto' margin='normal' fullWidth  placeholder='Insira um link de foto' />
+                        <TextField value={User.foto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='foto' label='foto' variant='outlined' name='foto' margin='normal' fullWidth  placeholder='insira um link de foto' />
                         
-                        <TextField value={User.email} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='Nickname' variant='outlined' placeholder='Insira um nickname' name='usuario' margin='normal' fullWidth required />
+                        <TextField value={User.usuario} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='e-mail' variant='outlined' name='usuario' margin='normal' fullWidth placeholder="mail@mail.com" required />
                        
-                        <TextField value={User.senha} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='Senha' variant='outlined' name='senha' margin='normal' type='password' placeholder="Insira uma senha com pelo menos 8 caracteres" fullWidth required />
-                        <TextField value={confirmarSenha} onChange={(e: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(e)}id='confirmarSenha' label='Confirmar Senha' variant='outlined' name='confirmarSenha' margin='normal' type='password' fullWidth placeholder="Repita sua senha" required />
+                        <TextField value={User.senha} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='senha' variant='outlined' name='senha' margin='normal' type='password' placeholder="insira uma senha com pelo menos 8 caracteres" fullWidth required />
+                        <TextField value={confirmarSenha} onChange={(e: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(e)}id='confirmarSenha' label='confirmar senha' variant='outlined' name='confirmarSenha' margin='normal' type='password' fullWidth placeholder="repita sua senha" required />
                         <Box marginTop={2} textAlign='center'>
+                           
                             <Link to='/login' className='text-decorator-none'>
                                 <Button variant='contained' color='secondary'  className='botao-contato'>
                                     Cancelar
