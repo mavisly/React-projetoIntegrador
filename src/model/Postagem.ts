@@ -7,7 +7,7 @@ interface Postagem{
     tipo_profissional:string, 
     atendimento:string,
     modalidade_categoria:string,
-    avaliacao:number,
+    avaliacao?:string | null,
     image_link: string,
     tema?: Tema | null,
     usuario?: User | null 

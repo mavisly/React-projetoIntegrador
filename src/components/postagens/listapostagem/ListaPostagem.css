@@ -4,8 +4,13 @@
   align-items: center;
  
 }
+.titulo-txt{
+  color: #1f7a57!important;
+  font-family: 'Bellota Text', cursive!important;
+  font-weight: bolder;
+}
 .btn-postagem {
-  background-color: rgb(13, 170, 231) !important;
+  background-color: #77bfa3!important;
  
   justify-content: center;
   align-items: center;
@@ -25,16 +30,19 @@
 
   justify-content: center;
   align-items: center;
-  height: 50vh;
-
-
+  height:100vh;
   min-width: 20;
-  max-width: 400;
+  max-width: 800;
 
 }
 /* Estilização botão nova postagem */
 .formulario_fora {
-  background-color: rgb(191, 210, 210);
+  background-image: url('https://img.freepik.com/fotos-gratis/diversas-pessoas-felizes-desfrutando-no-parque_53876-63295.jpg?w=900&t=st=1683152147~exp=1683152747~hmac=93dfa3dc9378d59f8a06141fa82c5ec4e4176468b0648887850581096defaf4d');
+    background-repeat:no-repeat;
+    
+    min-height: 100vh;
+    background-size:cover;
+    background-position:center;
 }
 /* .container_formulario {
   background-color: rgb(14, 108, 108); 
@@ -42,17 +50,26 @@
 } */
 
 .formulario {
-  background-color: #548C2F;
+  background-color: white;
+  /*
   box-shadow: -1px 7px 8px 6px rgba(0,0,0,0.71);
   -webkit-box-shadow: -1px 7px 8px 6px rgba(0,0,0,0.71);
   -moz-box-shadow: -1px 7px 8px 6px rgba(0,0,0,0.71);
-  
+  */
+  padding: 10px;
 }
 
-.caixa {
-  background-color: #77bfa3;
-  justify-content: center;
-  align-items: center;
+.bg-cadastro-postagem{
+
+width: 100%;
+height:100%;
+
+
+padding: 20px;
+background-size: 300% 300%;
+background-image: linear-gradient(-45deg, #99e2b4 25%, #99e2b4 25%, #036666 51%, #036666 80%);
+-webkit-animation: AnimateBG 20s ease infinite;
+        animation: AnimateBG 20s ease infinite;
 }
 .form {
   background-color: #F0F0F0;
@@ -64,6 +81,47 @@
   background-color: aqua;
   border-radius: 100px;
 }
+
+.txt-lista-postagem{
+  font-family: 'Bellota Text', cursive!important;
+  color: white;
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+  font-family: 'Bellota Text', cursive!important;
+}
+#avaliacao{
+  font-family: 'Bellota Text', cursive!important;
+}
+.botao-cadastro-post{
+  background-color: #77bfa3!important;
+  margin-top: 10px!important;
+}
+.list-item{
+  display: flex!important;
+  margin-bottom: 5px!important;
+}
+.item-post{
+  align-items: center!important;
+  justify-content: center!important;
+  text-align: justify!important;
+}
+.txt-postagens{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: 'Bellota Text', cursive!important;
+}
+.txt-postagens-tema{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: 'Bellota Text', cursive!important;
+}
+.txt-postagens-tema:hover{
+  margin: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #99e2b4;
+}
+
 /* .ul{
   display: flex!important;
 } */
