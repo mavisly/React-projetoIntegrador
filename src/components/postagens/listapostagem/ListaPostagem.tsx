@@ -305,7 +305,6 @@ function ListaPostagem() {
                       ))
                     }
                   </Select>
-                  
                   <Button type="submit" variant="contained" color="primary" className="botao-cadastro-post">
                     Finalizar
                   </Button>
@@ -314,7 +313,6 @@ function ListaPostagem() {
             </form>
         </Container>
         </DialogContent>
-        
       </Dialog>
        
       
