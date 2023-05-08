@@ -101,7 +101,7 @@ function Cadastro() {
             <Grid item xs={6} alignItems='center' >
                 <Box paddingX={10}>
                     <form  onSubmit={onSubmit} className="bg-cadastro">
-                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className="contato-titulo">Faça parte da nossa Comunidade</Typography>
+                        <Typography variant='h4' gutterBottom color='textPrimary' component='h6' align='center' className="contato-titulo">Faça parte da nossa Comunidade</Typography>
                         
                         <TextField value={User.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='nome' label='nome' variant='outlined' name='nome' margin='normal' fullWidth placeholder="insira seu nome " required />
                         

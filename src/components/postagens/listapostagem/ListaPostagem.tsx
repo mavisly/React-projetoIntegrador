@@ -255,17 +255,19 @@ function ListaPostagem() {
    <div className="background_listapostagem">
     <>
 
-    <Button variant="outlined" className="btn-postagem" onClick={handleClickOpen}>
-        Nova postagem
-      </Button>
+      <Box display={'flex'} justifyContent={'center'} padding={1}>
+            <Button variant="outlined" onClick={handleClickOpen} className="btn-postagem">
+              Nova postagem
+            </Button>
+      </Box>
 
       <Dialog open={open} onClose={handleClose} className="formulario_fora">
-        <DialogContent className="bg-cadastro-postagem" >
+      <DialogContent className="bg-cadastro-postagem" >
         
         
           <DialogContentText style={{color:'white'}}>
             <Typography variant="h4" className="caixa txt-lista-postagem" >Refúgio Mental</Typography>
-            Escreva sobre uma avaliação, dica ou outro coisa que esteja pensando.
+            Escreva sobre uma avaliação, dica ou outra coisa que esteja pensando.
           </DialogContentText>
           
           <Container maxWidth="sm" className="container_formulario">
@@ -316,8 +318,6 @@ function ListaPostagem() {
       </Dialog>
        
       
-       
-      
        {posts.map((post) => (
          
          <Grid container  direction={'column'} >
@@ -357,10 +357,8 @@ function ListaPostagem() {
                    <Typography variant="body2" component="p" className="txt-postagens-tema">
                      #{post.tema?.descricao}
                    </Typography>
-
-                 </CardContent>
-                 <CardActions>
-                   <Box display="flex" justifyContent="center" mb={1.5}>
+                  
+                  <Box display="flex" justifyContent="center" mb={1.5}>
                      <Link
                        to={`/formularioPostagem/${post.id}`}
                        className="text-decorator-none"
@@ -393,7 +391,8 @@ function ListaPostagem() {
                        </Box>
                      </Link>
                    </Box>
-                 </CardActions>
+                 </CardContent>
+                 
                </Card>
              </Box>
              

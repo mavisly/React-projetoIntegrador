@@ -125,4 +125,14 @@
     padding-right: 2px;
     padding-bottom: 5px;
 }
+.botao-tema{
+  background-color: #2c6e49!important;
+  margin-right: 1px!important;
+}
 
+.container-lista-temas{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(19, 49, 49);
+}

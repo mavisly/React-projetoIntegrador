@@ -1,0 +1,11 @@
+.container-deletarposts{
+    display: flex;
+    background-color: rgb(19, 49, 49)!important;
+    height: 120vh;
+}
+.deletar-tema{
+    display: flex;
+    width: 400px;
+  justify-content: center;
+  align-items: center;
+}

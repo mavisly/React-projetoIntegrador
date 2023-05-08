@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
-import {Box} from '@mui/material';
+import {Box, Grid} from '@mui/material';
 import {useNavigate, useParams } from 'react-router-dom';
 import { buscaId, deleteId } from '../../../services/Service';
 import Tema from '../../../model/Tema';
@@ -79,10 +79,17 @@ function DeletarTema() {
           
   return (
     <>
-      <Box m={2}>
-        <Card variant="outlined">
-          <CardContent>
-            <Box justifyContent="center">
+    <Grid container xs={12} className='bg-deletar-tema'>
+      <Box display={'flex'} alignItems={'center'}> 
+      
+      <div className="paper-tema-deletar">
+                <div className="pin-tema-deletar">
+                  <div className="shadow-tema-deletar"></div>
+                  <div className="metal-tema-deletar"></div>
+                  <div className="bottom-circle-tema-deletar"></div>
+                </div>
+          <CardContent className='box-tema-deletar'>
+            <Box justifyContent="center" >
               <Typography color="textSecondary" gutterBottom>
                 Deseja deletar o Tema: 
               </Typography>
@@ -93,23 +100,23 @@ function DeletarTema() {
                 {tema?.descricao}
               </Typography>
             </Box>
-          </CardContent>
-          <CardActions>
-            <Box display="flex" justifyContent="start" ml={1.0} mb={2} >
-              <Box mx={2}>
-                <Button onClick={sim} variant="contained" className="marginLeft" size='large' color="primary">
+            
+            <Box>
+                
+                <Button onClick={sim} variant="contained"  size='large' color="primary" className='botao-deletar-tema'>
                   Sim
                 </Button>
-              </Box>
-              <Box mx={2}>
-                <Button  onClick={nao} variant="contained" size='large' color="secondary">
+                
+                <Button  onClick={nao} variant="contained" size='large' color="secondary" className='botao-deletar-tema'>
                   Não
                 </Button>
-              </Box>
-            </Box>
-          </CardActions>
-        </Card>
+              </Box> 
+             
+          </CardContent>
+          
+         </div>
       </Box>
+      </Grid>
     </>
   );
 }

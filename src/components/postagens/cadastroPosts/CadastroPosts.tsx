@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Tema from "../../../model/Tema";
 import Postagem from "../../../model/Postagem";
 import { busca, buscaId, post, put } from "../../../services/Service";
-import { Button, Container, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
+import { Button, Container, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
+import './CadastroPosts.css'
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/tokensReducer";
 import { toast } from "react-toastify";
@@ -138,39 +139,54 @@ function CadastroPosts(){
 
     return (
         <>
-         <Container maxWidth="sm" className="topo">
-            <form onSubmit={onSubmit}>
-                <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
-                <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="informacoes" variant="outlined" name="informacoes" margin="normal" fullWidth />
-                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="tipo_profissional" label="tipo_profissional" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
-                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="atendimento" label="atendimento" variant="outlined" name="atendimento" margin="normal" fullWidth />
-                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="modalidade_categoria" label="modalidade_categoria" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
-                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="avaliacao" label="avaliacao" variant="outlined" name="avaliacao" margin="normal" fullWidth />
-                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="image_link" label="image_link" variant="outlined" name="image_link" margin="normal" fullWidth />
+        
+            <Grid container xs={12} justifyContent="center" className="bg-lista-postagem ">
+            
+            <Grid item xs={6} alignItems="center"  className="bg-form">
 
-                <FormControl >
-                    <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
-                    <Select
-                        labelId="demo-simple-select-helper-label"
-                        id="demo-simple-select-helper"
-                        onChange={(e => buscaId(`/temas/${e.target.value}`, setTema,{
-                            headers: {
-                                "Authorization": token
-                            }
-                        }))}>
-                          {
-                            temas.map(tema => (
-                                <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
-                            ))
-                          }
-                    </Select>
-                    <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type="submit" variant="contained" color="primary">
-                        Finalizar
-                    </Button>
+               
+            <form onSubmit={onSubmit} className="bg-dentro-form">
+            <Typography variant="h5" color="textSecondary" component="h1" align="center" className="txt-cadastro-postagem">Formulário de cadastro postagem</Typography>
+
+                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="atendimento" label="título, mínimo 15 caracteres *" variant="outlined" name="atendimento" margin="normal" fullWidth/>
+
+                <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="texto, mínimo de 5 caracteres *" variant="outlined" name="informacoes" margin="normal" fullWidth />
+
+                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="tipo_profissional" label="tipo profissional, mínimo de 10 caracteres *" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
+
+                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="modalidade_categoria" label="modalidade atendimento, mínimo 5 caracteres *" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
+
+
+                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="avaliacao" label="avaliação" variant="outlined" name="avaliacao" margin="normal" fullWidth />
+                
+
+                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="image_link" label="insira o link da imagem, mínimo 5 caracteres" variant="outlined" name="image_link" margin="normal" fullWidth />
+
+                <FormControl className="form-margin">
+                <FormHelperText>escolha um tema para a postagem</FormHelperText>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    onChange={(e => buscaId(`/temas/${e.target.value}`, setTema, {
+                      headers: {
+                        "Authorization": token
+                      }
+                    }))}>
+                    {
+                      temas.map(tema => (
+                        <MenuItem value={tema.id} className="list-item">{tema.nome}</MenuItem>
+                      ))
+                    }
+                  </Select>
+                  
+                  <Button type="submit" variant="contained" color="primary" className="botao-cadastro-post">
+                    Finalizar
+                  </Button>
                 </FormControl>
             </form>
-        </Container>
+            </Grid>
+            </Grid>
+        
         </>
     );
 }

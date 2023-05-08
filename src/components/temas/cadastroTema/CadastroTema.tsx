@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react"
-import { Container, Typography, TextField, Button } from "@material-ui/core"
+import { Container, Typography, TextField, Button, Grid } from "@material-ui/core"
 import { useNavigate, useParams } from "react-router-dom"
 import Tema from "../../../model/Tema";
 import "./CadastroTema.css";
@@ -108,19 +108,32 @@ function CadastroTema() {
     }
 
     return (
-        <Container maxWidth="sm" className="topo">
+        
+            <Grid xs={12} container className="containerr-temas">
+                
+           
             <form onSubmit={onSubmit}>
-                <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro tema</Typography>
 
-                <TextField value={temas.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedTema(e)} id="nome" label="nome" variant="outlined" name="nome" margin="normal" fullWidth />
+            <div className="paper-tema">
+                <div className="pin-tema">
+                  <div className="shadow-tema"></div>
+                  <div className="metal-tema"></div>
+                  <div className="bottom-circle-tema"></div>
+                </div>
+
+                <Typography variant="h3" color="textSecondary" component="h1" align="center" className="titulo-tema">Formulário de cadastro tema</Typography>
+
+                <TextField value={temas.nome} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedTema(e)} id="nome" label="nome" variant="outlined" name="nome" margin="normal" fullWidth  />
 
                 <TextField value={temas.descricao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedTema(e)} id="descricao" label="descricao" variant="outlined" name="descricao" margin="normal" fullWidth />
                 
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary" className='botao-tema'>
                     Finalizar
                 </Button>
+               </div> 
             </form>
-        </Container>
+            </Grid>
+        
 
 
     )

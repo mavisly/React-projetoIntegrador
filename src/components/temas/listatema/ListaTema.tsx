@@ -43,9 +43,9 @@ function ListaTema() {
     <>
       {
         temas.map(tema => (
-          <Grid xs={4}>
+          <Grid xs={12} className='container-lista-temas'>
             
-            <Box paddingTop={1} paddingBottom={1} paddingLeft={1}>
+            <Box paddingTop={1} paddingBottom={1} paddingLeft={1} >
               <div className="paper">
                 <div className="pin">
                   <div className="shadow"></div>
@@ -62,6 +62,8 @@ function ListaTema() {
                   size='small' 
                   color="primary" 
                   startIcon={<Create />}
+                  className='botao-tema'
+                  
                   >
                     Atualizar
                   </Button>
@@ -73,6 +75,7 @@ function ListaTema() {
                     color="secondary"
                     startIcon={<Delete />}
                     size="small"
+                    className='botao-tema'
                   >
                     Deletar
                   </Button>
