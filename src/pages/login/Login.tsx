@@ -253,14 +253,14 @@ function Login() {
               color="textPrimary"
               component="h3"
               align="center"
-            >
+            className="font-txt">
               Entrar
             </Typography>
             <TextField
               value={UserLogin.email}
               onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
               id="email"
-              label="email"
+              label="nome de usuário"
               variant="outlined"
               name="email"
               margin="normal"
@@ -278,7 +278,7 @@ function Login() {
               fullWidth
             />
             <Box textAlign="center" marginTop={2}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary" className="botao">
                 Logar
               </Button>
             </Box>
@@ -298,7 +298,8 @@ function Login() {
                   variant="subtitle1"
                   gutterBottom
                   align="center"
-                  style={{ fontWeight: "bold" }}
+                  style={{ fontWeight: "bold", color:'rgb(19, 49, 49)' }}
+                  className="font-txt"
                 >
                   Cadastre-se
                 </Typography>

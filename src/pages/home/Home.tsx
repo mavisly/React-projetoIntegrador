@@ -107,12 +107,7 @@ function Home() {
                                 <Link to="/posts">
                                     <Button color="inherit">Postagens</Button>
                                 </Link>
-                                <Link to="/formularioPostagem">
-                                    <Button color="inherit">Nova Postagem</Button>
-                                </Link>
-
-
-                            </Toolbar>
+                                   </Toolbar>
                         </AppBar>
                     </Box>
                 </Grid>
@@ -144,7 +139,7 @@ function Home() {
                             temas.map(tema => (
                                 <Box display="flex" alignItems="center" justifyContent="center" className="container-temas">
 
-                                    <Box marginRight={2} paddingX={5}>
+                                    <Box marginRight={2} marginBottom={5} paddingX={5}>
                                         <Card variant="outlined">
                                             <Box>
 

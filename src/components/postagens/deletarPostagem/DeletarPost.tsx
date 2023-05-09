@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
 import { buscaId, deleteId } from "../../../services/Service";
-import { Box, Card, CardActions, CardContent } from "@mui/material";
+import { Box, Card, CardActions, CardContent, CardMedia, Grid } from "@mui/material";
 import { Button, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/tokensReducer";
 import { toast } from 'react-toastify';
-
+import './DeletarPost.css'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 function DeletarPost(){
     
     let navigate = useNavigate();
@@ -76,29 +77,51 @@ function DeletarPost(){
   
     return (
       <>
-      
-        <Box m={2}>
+      <Grid container xs={12} className="container-deletarposts">
+        <Box m={2} className="deletar-tema">
           <Card variant="outlined" >
             <CardContent>
               <Box justifyContent="center">
-                <Typography color="textSecondary" gutterBottom>
+                <Typography color="textSecondary" gutterBottom  variant="h5">
                   Deseja deletar a Postagem:
                 </Typography>
+
+                <Typography color="textSecondary" variant="h6">
+                {post?.atendimento}
+                </Typography>
+
                 <Typography color="textSecondary" >
                 {post?.informacoes}
                 </Typography>
+
+                <Typography color="textSecondary" >
+                <FavoriteBorderIcon />Eu sou: {post?.tipo_profissional}
+                </Typography>
+                
+                <Typography>Modalidade: {post?.modalidade_categoria}</Typography>
+ 
+                <Typography>Avaliação: {post?.avaliacao}</Typography> 
+                <CardMedia 
+                   component="img"
+                   alt="imagem post"
+                   height="210"
+                   image={post?.image_link}> 
+                </CardMedia>
+                <Typography variant="body2" component="p" className="txt-postagens-tema">
+                     #{post?.tema?.descricao}
+                   </Typography>
               </Box>
   
             </CardContent>
             <CardActions>
-              <Box display="flex" justifyContent="start" ml={1.0} mb={2} >
-                <Box mx={2}>
-                <Button onClick={sim} variant="contained" className="marginLeft" size='large' color="primary">
+              <Box display="flex" justifyContent="start" ml={1.0} mb={1} >
+                <Box mx={1}>
+                <Button onClick={sim} variant="contained" className="marginLeft btn-postagem" size='large' color="primary" >
                   Sim
                 </Button>
                 </Box>
                 <Box>
-                <Button onClick={nao} variant="contained" size='large' color="secondary">
+                <Button onClick={nao} variant="contained" size='large' color="secondary" className="btn-postagem">
                   Não
                 </Button>
                 </Box>
@@ -106,6 +129,7 @@ function DeletarPost(){
             </CardActions>
           </Card>
         </Box>
+        </Grid>
       </>
     );
    }

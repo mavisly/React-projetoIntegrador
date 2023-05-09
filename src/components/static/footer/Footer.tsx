@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Grid, TableCell, TableFooter, GridList } from '@material-ui/core';
-import { Box, Button, Divider, Icon, List, ListItem, ListItemIcon, ListItemText, Table, TextField } from '@mui/material';
+import { Box, Button, CardMedia, Divider, Icon, List, ListItem, ListItemIcon, ListItemText, Table, TextField } from '@mui/material';
 import Link from '@mui/material/Link';
 import './Footer.css'
 import { useSelector } from 'react-redux';
@@ -51,8 +51,15 @@ function Footer() {
                     <Typography variant="h6" align="center" gutterBottom className='texto-footer'>Nos conheça!</Typography>
                 </Box>
                 <Box display="flex" alignItems="center" justifyContent="center">
-                    <Link href='https://linktr.ee/refugiomental'>
-                        <img src="src\assets\img\linktree.png" alt="Link para o Linktree" className="foto" />
+                    <Link href='https://linktr.ee/refugiomental' target="_blank">
+                    <CardMedia 
+                   component="img"
+                   alt="imagem post"
+                    width='40'
+                    height="20"
+                   image={'https://logodownload.org/wp-content/uploads/2019/09/linktree-logo.png'}> 
+                   </CardMedia>
+                       
                     </Link>
                 </Box>
             </Grid>

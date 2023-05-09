@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
@@ -11,37 +10,21 @@ import {
   Button,
 
 } from "@material-ui/core";
-import { Box, CircularProgress, Container, Dialog, DialogTitle, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box, Container, Dialog, DialogContent, DialogTitle, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import "./ListaPostagem.css";
-import { MdFilledButton } from '@material/web/button/filled-button.js';
-import { MdOutlinedButton } from '@material/web/button/outlined-button.js';
-import { MdCheckbox } from '@material/web/checkbox/checkbox.js';
-
-import useLocalStorage from "react-use-localstorage";
 import { useNavigate } from "react-router-dom";
-import Loader from "../../loader/loader";
-
-
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Skeleton from '@mui/material/Skeleton';
-import ListaTema from "../../temas/listatema/ListaTema";
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import CadastroPosts from "../cadastroPosts/CadastroPosts";
 import Tema from "../../../model/Tema";
 import { ToastContainer, toast } from 'react-toastify';
 
-
-
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
-
+import PersonIcon from '@mui/icons-material/Person';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function ListaPostagem() {
   const [posts, setPosts] = useState<Postagem[]>([])
@@ -105,16 +88,14 @@ function ListaPostagem() {
     
     useEffect(()=> {
         if (token ==""){
-
           toast.error('Você precisa estar logado!', {
-
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
-            theme: "colored",
+            theme: "light",
             progress: undefined,
         });
             navigate("/login")
@@ -131,16 +112,21 @@ function ListaPostagem() {
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado")
+        toast.error('Você precisa estar logado!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "light",
+        progress: undefined,
+    });
       navigate("/login")
     }
   }, [token])
 
-  const [tema, setTema] = useState<Tema>({
-    id: 0,
-    nome: "",
-    descricao: ""
-  })
+  
 
   const [postagem, setPostagem] = useState<Postagem>({
     id: 0,
@@ -148,7 +134,7 @@ function ListaPostagem() {
     tipo_profissional: "",
     atendimento: "",
     modalidade_categoria: "",
-    avaliacao: 0,
+    avaliacao: null,
     image_link: ""
   })
 
@@ -210,7 +196,7 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
           } catch (error) {
@@ -221,7 +207,7 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
           }
@@ -240,9 +226,11 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
+                 /* com o home() aqui, se houver erro no cadastro de postagem, não retorna para o home. assim podemos corrigir os dados errados sem precisar voltar para cadastro.  */
+                 home();
           } catch (error) {
               toast.error('Erro ao cadastrar, verifique os campos!', {
                   position: "top-right",
@@ -251,54 +239,58 @@ function ListaPostagem() {
                   closeOnClick: true,
                   pauseOnHover: false,
                   draggable: false,
-                  theme: "colored",
+                  theme: "light",
                   progress: undefined
                  });
           }
         }
-        
-        home();
-        
-
     }
 
   function home() {
     navigate("/home")
   }
+
   return (
 
    <div className="background_listapostagem">
     <>
 
-    <Button variant="outlined" className="btn-postagem" onClick={handleClickOpen}>
-        Nova postagem
-      </Button>
+      <Box display={'flex'} justifyContent={'center'} padding={1}>
+            <Button variant="outlined" onClick={handleClickOpen} className="btn-postagem">
+              Nova postagem
+            </Button>
+      </Box>
 
       <Dialog open={open} onClose={handleClose} className="formulario_fora">
-        <DialogTitle className="caixa" >Refugio Mental</DialogTitle>
-        <DialogContent className="caixa" >
-          <DialogContentText>
-            Escreva sobre uma avaliação, dica ou outro coisa que esteja pensando.
+      <DialogContent className="bg-cadastro-postagem" >
+        
+        
+          <DialogContentText style={{color:'white'}}>
+            <Typography variant="h4" className="caixa txt-lista-postagem" >Refúgio Mental</Typography>
+            Escreva sobre uma avaliação, dica ou outra coisa que esteja pensando.
           </DialogContentText>
           
           <Container maxWidth="sm" className="container_formulario">
-            <form onSubmit={onSubmit} className="formulario" >
-            <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
-                <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="informacoes" variant="outlined" name="informacoes" margin="normal" fullWidth />
+            <form onSubmit={onSubmit} className="formulario " >
+            <Typography variant="h3" color="textSecondary" component="h1" align="center" className="txt-lista-postagem">Formulário de cadastro postagem</Typography>
 
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="tipo_profissional" label="tipo_profissional" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="atendimento" label="atendimento" variant="outlined" name="atendimento" margin="normal" fullWidth />
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="modalidade_categoria" label="modalidade_categoria" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
-                <FormHelperText>min =</FormHelperText>
-                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="avaliacao" label="avaliacao" variant="outlined" name="avaliacao" margin="normal" fullWidth />
-                <FormHelperText>min = 0 a 10</FormHelperText>
-                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="image_link" label="image_link" variant="outlined" name="image_link" margin="normal" fullWidth />
-                <FormHelperText>Usar que nem blogPessoal</FormHelperText>
-                <FormControl >
-                  <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
+              <TextField value={postagem.atendimento} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="atendimento" label="título, mínimo 15 caracteres *" variant="outlined" name="atendimento" margin="normal" fullWidth />
+
+              <TextField value={postagem.informacoes} onChange={(e: ChangeEvent<HTMLInputElement>)=> updatedPostagem(e)} id="informacoes" label="texto, mínimo de 5 caracteres *" variant="outlined" name="informacoes" margin="normal" fullWidth />
+
+                <TextField value={postagem.tipo_profissional} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="tipo_profissional" label="tipo profissional, mínimo de 10 caracteres *" name="tipo_profissional" variant="outlined" margin="normal" fullWidth />
+
+                <TextField value={postagem.modalidade_categoria} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="modalidade_categoria" label="modalidade atendimento, mínimo 5 caracteres *" variant="outlined" name="modalidade_categoria" margin="normal" fullWidth />
+
+
+                <TextField value={postagem.avaliacao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="avaliacao" label="avaliação" variant="outlined" name="avaliacao" margin="normal" fullWidth />
+                
+
+                <TextField value={postagem.image_link} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="image_link" label="insira o link da imagem, mínimo 5 caracteres" variant="outlined" name="image_link" margin="normal" fullWidth />
+
+
+                <FormControl className="form-margin">
+                <FormHelperText>escolha um tema para a postagem</FormHelperText>
                   <Select
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"
@@ -309,12 +301,11 @@ function ListaPostagem() {
                     }))}>
                     {
                       temas.map(tema => (
-                        <MenuItem value={tema.id}>{tema.descricao}</MenuItem>
+                        <MenuItem value={tema.id} className="list-item">{tema.nome}</MenuItem>
                       ))
                     }
                   </Select>
-                  <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                  <Button type="submit" variant="contained" color="primary" >
+                  <Button type="submit" variant="contained" color="primary" className="botao-cadastro-post">
                     Finalizar
                   </Button>
                 </FormControl>
@@ -322,10 +313,7 @@ function ListaPostagem() {
             </form>
         </Container>
         </DialogContent>
-        
       </Dialog>
-       
-      
        
       
        {posts.map((post) => (
@@ -336,30 +324,39 @@ function ListaPostagem() {
            <Grid item xs={4}  >
              <Box m={2}>
                <Card variant="outlined" className="posts"   >
-                 <CardContent>
-                   <Typography color="textSecondary" gutterBottom> 
-                     {post.tema?.nome} 
+                 <CardContent className="item-post">
+                   
+                   <Typography color="textSecondary" 
+                   gutterBottom variant="h5" className="titulo-txt"> 
+                     {post.atendimento}
                    </Typography>
-                   <Typography variant="h5" component="h2">
+
+                   <Typography  component="h2" className="txt-postagens">
                      {post.informacoes}
                    </Typography>
-                   <Typography variant="body2" component="p">
-                     {post.tipo_profissional}
+
+                   <Typography variant="body2" component="p" className="txt-postagens">
+                   <FavoriteBorderIcon /> Eu sou: {post.tipo_profissional}
                    </Typography>
-                   <Typography>{post.atendimento}</Typography>
+                   
+                   <Typography>Modalidade: {post.modalidade_categoria}</Typography>
  
-                   <Typography>{post.modalidade_categoria}</Typography>
+                   <Typography>Avaliação: {post.avaliacao}</Typography> 
  
-                   <Typography>{post.avaliacao}</Typography>
-                   <CardMedia> {post.image_link}</CardMedia>
+                  
+                   <CardMedia 
+                   component="img"
+                   alt="imagem post"
+                   height="210"
+                   image={post.image_link}> 
+                   </CardMedia>
                   
  
-                   <Typography variant="body2" component="p">
-                     {post.tema?.descricao}
+                   <Typography variant="body2" component="p" className="txt-postagens-tema">
+                     #{post.tema?.descricao}
                    </Typography>
-                 </CardContent>
-                 <CardActions>
-                   <Box display="flex" justifyContent="center" mb={1.5}>
+                  
+                  <Box display="flex" justifyContent="center" mb={1.5}>
                      <Link
                        to={`/formularioPostagem/${post.id}`}
                        className="text-decorator-none"
@@ -367,7 +364,7 @@ function ListaPostagem() {
                        <Box mx={1} >
                          <Button
                            variant="contained"
-                           className="marginLeft"
+                           className="btn-postagem"
                            size="small"
                            color="primary"
                          >
@@ -382,13 +379,9 @@ function ListaPostagem() {
                        <Box mx={1}>
                          <Button
                            variant="contained"
-                           className="marginLeft"
                            size="small"
                            color="secondary"
-                           id="botaodeletar"
-
-                           
-                         >
+                           className="btn-postagem">
                            deletar
                          </Button>
                        
@@ -396,7 +389,8 @@ function ListaPostagem() {
                        </Box>
                      </Link>
                    </Box>
-                 </CardActions>
+                 </CardContent>
+                 
                </Card>
              </Box>
              

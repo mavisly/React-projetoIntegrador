@@ -109,6 +109,7 @@
   font-family: 'Bellota Text', cursive!important;
   text-transform: none!important;
   color: white!important;
+  text-decoration: none!important;
 }
 .MuiToolbar-regular{
   min-height: 4px!important;

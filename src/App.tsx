@@ -21,6 +21,7 @@ import store from './store/store';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Contato from "./pages/contato/Contato";
+import DuvidasFrquentes from "./pages/duvidas/DuvidasFrequentes";
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
         <Route path ="/formularioPostagem/:id" element={<CadastroPosts />} />;
         <Route path="/deletarPostagem/:id" element={<DeletarPost />} />;
         <Route path="/contato" element={<Contato />} />
+        
+        <Route path="/duvidas" element={<DuvidasFrquentes />} />
       </Routes>
       </div>
     <Footer />
