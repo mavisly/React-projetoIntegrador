@@ -14,6 +14,7 @@
 - [Introdução](#introducao)
 - [Características](#caracteristicas)
 - [Objetivos](#objetivos)
+- [Acesso a nossa rede social](#acesso)
 - [Páginas](#paginas)
 - [Tecnologias](#tecnologias)
 - [Desenvolvedores](#desenvolvedores)
@@ -48,9 +49,20 @@ Os objetivos que pretendemos alcançar com a criação dessa rede social são:
 * Divulgar avaliações de locais de atendimentos
 * Explanar dicas de saúde e bem estar
 
+<br />
 
-
-
+## Acesso
+<ol> 
+  <li> Acesse a nossa rede social pelo link:
+  
+    https://refugiomental.vercel.app/
+   
+   <li> Conheça nosso back-end: 
+     
+     https://refugiomental.onrender.com/
+     
+  </ol>
+  
 <br />
 
 ## Páginas
